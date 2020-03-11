@@ -48,4 +48,30 @@ const draft = {
 };
 
 const drawdown = document.getElementById("drawdown");
+const drawdown_width = 800;
+const pixel_width = 20;
+
+const fill = function(i, j, draft) {
+  let row = i % draft.weft.length;
+  let col = j % draft.warp.length;
+  let treadle = draft.weft[row];
+  let shafts_down = draft.tieup[treadle];
+  let shaft = draft.warp[col];
+  return shafts_down.includes(shaft);
+};
+
+for (let i=0; i < drawdown_width / pixel_width ; i++) { // rows
+  for (let j=0; j < drawdown_width / pixel_width ; j++) { // cols
+    let threadbox = document.createElementNS("http://www.w3.org/2000/svg", 'rect'); //Create a path in SVG's namespace
+    threadbox.setAttribute("x", i * pixel_width);
+    threadbox.setAttribute("y", j * pixel_width);
+    threadbox.setAttribute("height", pixel_width);
+    threadbox.setAttribute("width", pixel_width);
+    threadbox.setAttribute("fill", fill(i, j, draft) ? "#f00" : "#fff")
+    threadbox.style.stroke = "#333"; //Set stroke colour
+    threadbox.style.strokeWidth = "2px"; //Set stroke width
+    drawdown.appendChild(threadbox);
+  }
+}
+
 
