@@ -44,7 +44,7 @@ fetch("/dreams")
 const draft = {
   warp: [1,2,3,4,3,2,1,4],
   weft: [1,2,3,4,3,2,1,4],
-  tieup: [[1,2], [2, 3], [3, 4], [1, 4]]
+  tieup: ["there is no shaft 0", [1,2], [2, 3], [3, 4], [1, 4]]
 };
 
 const drawdown = document.getElementById("drawdown");
@@ -56,6 +56,7 @@ const fill = function(i, j, draft) {
   let col = j % draft.warp.length;
   let treadle = draft.weft[row];
   let shafts_down = draft.tieup[treadle];
+  if (!shafts_down) debugger;
   let shaft = draft.warp[col];
   return shafts_down.includes(shaft);
 };
