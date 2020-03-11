@@ -43,9 +43,10 @@ fetch("/dreams")
 
 const draft = {
   shaft_count: 4,
+  treadle_count: 6,
   warp: [1,2,3,4,3,2,1,4],
   weft: [1,2,3,4,3,2,1,4],
-  tieup: ["there is no shaft 0", [1,2], [2, 3], [3, 4], [1, 4]]
+  tieup: ["there is no treadle 0", [1,2], [2, 3], [3, 4], [1, 4]]
 };
 
 const drawdown = document.getElementById("drawdown");
@@ -65,8 +66,8 @@ const fill_drawdown = function(i, j, draft) {
 for (let i=0; i < drawdown_width / pixel_width ; i++) { // rows
   for (let j=0; j < drawdown_width / pixel_width ; j++) { // cols
     let threadbox = document.createElementNS("http://www.w3.org/2000/svg", 'rect'); //Create a path in SVG's namespace
-    threadbox.setAttribute("x", i * pixel_width);
-    threadbox.setAttribute("y", j * pixel_width);
+    threadbox.setAttribute("x", 800 - ((i + 1) * pixel_width));
+    threadbox.setAttribute("y", 800 - ((j + 1) * pixel_width));
     threadbox.setAttribute("height", pixel_width);
     threadbox.setAttribute("width", pixel_width);
     threadbox.setAttribute("fill", fill_drawdown(i, j, draft) ? "#f00" : "#fff")
@@ -78,11 +79,11 @@ for (let i=0; i < drawdown_width / pixel_width ; i++) { // rows
 
 
 const fill_threading = function(i, j, draft) {
-  let shaft = i % draft.shaft_count;
-  let col = j % draft.warp.length;
-  debugger;
+  let shaft = i % draft.shaft_count + 1;
+  let col = j % draft.warp.length; 
   return draft.warp[col] == shaft;
 }
+
 for (let i=0; i < draft.shaft_count ; i++) { // threading rows
   for (let j=0; j < drawdown_width / pixel_width ; j++) { // threading cols
     let threadbox = document.createElementNS("http://www.w3.org/2000/svg", "rect");
@@ -98,4 +99,22 @@ for (let i=0; i < draft.shaft_count ; i++) { // threading rows
   }
 }  
 
+const fill_tieup = function(i, j, draft) {
+  let treadle = i % draft.treadle_count + 1;
+  let shaft = j % draft.shaft_count;
+  return draft.tieup[treadle].includes(shaft);
+}
 
+for (let i=0; i < draft.treadle_count ; i++) { //tie up rows (treadles)
+  for (let j=0; j < draft.shaft_count ; j++) { // tie up cols (shafts)
+    let threadbox = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    threadbox.setAttribute("x", 800 + 20 + (i * pixel_width));
+    threadbox.setAttribute("y", 800 + 20 + (j * pixel_width));
+    threadbox.setAttribute("height", pixel_width);
+    threadbox.setAttribute("width", pixel_width);
+    threadbox.setAttribute("fill", fill_tieup(i, j, draft) ? "#000" : "#fff");
+    threadbox.style.stroke = "#333"
+    threadbox.style.strokeWidth = "2px"
+    drawdown.appendChild(threadbox);
+  }
+}
