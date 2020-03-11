@@ -1,8 +1,8 @@
 // client-side js, loaded by index.html
 // run by the browser each time the page is loaded
 
-console.log("hello world :o");
 
+/*
 // define variables that reference elements on our page
 const dreamsList = document.getElementById("dreams");
 const dreamsForm = document.querySelector("form");
@@ -39,3 +39,13 @@ fetch("/dreams")
       dreamsForm.elements.dream.focus();
     });
   });
+*/
+
+const draft = {
+  warp: [1,2,3,4,3,2,1,4],
+  weft: [1,2,3,4,3,2,1,4],
+  tieup: [[1,2], [2, 3], [3, 4], [1, 4]]
+};
+
+const drawdown = document.getElementById("drawdown");
+
