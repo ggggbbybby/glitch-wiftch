@@ -80,13 +80,14 @@ for (let i=0; i < drawdown_width / pixel_width ; i++) { // rows
 const fill_threading = function(i, j, draft) {
   let shaft = i % draft.shaft_count;
   let col = j % draft.warp.length;
+  debugger;
   return draft.warp[col] == shaft;
 }
 for (let i=0; i < draft.shaft_count ; i++) { // threading rows
   for (let j=0; j < drawdown_width / pixel_width ; j++) { // threading cols
     let threadbox = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-    threadbox.setAttribute("x", i * pixel_width);
-    threadbox.setAttribute("y", 800 + 20 + j * pixel_width);
+    threadbox.setAttribute("x", 800 - ((j + 1) * pixel_width));
+    threadbox.setAttribute("y", 800 + 20 + i * pixel_width);
     threadbox.setAttribute("height", pixel_width);
     threadbox.setAttribute("width", pixel_width);
     threadbox.setAttribute("fill", fill_threading(i, j, draft) ? "#000" : "#fff")
