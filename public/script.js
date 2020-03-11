@@ -101,18 +101,39 @@ for (let i=0; i < draft.shaft_count ; i++) { // threading rows
 
 const fill_tieup = function(i, j, draft) {
   let treadle = i % draft.treadle_count + 1;
-  let shaft = j % draft.shaft_count;
+  let shaft = j % draft.shaft_count + 1;
+  if (!draft.tieup[treadle]) debugger;
   return draft.tieup[treadle].includes(shaft);
 }
 
-for (let i=0; i < draft.treadle_count ; i++) { //tie up rows (treadles)
-  for (let j=0; j < draft.shaft_count ; j++) { // tie up cols (shafts)
+for (let i=0; i < draft.treadle_count ; i++) { //tie up cols (treadles)
+  for (let j=0; j < draft.shaft_count ; j++) { // tie up rows (shafts)
     let threadbox = document.createElementNS("http://www.w3.org/2000/svg", "rect");
     threadbox.setAttribute("x", 800 + 20 + (i * pixel_width));
     threadbox.setAttribute("y", 800 + 20 + (j * pixel_width));
     threadbox.setAttribute("height", pixel_width);
     threadbox.setAttribute("width", pixel_width);
     threadbox.setAttribute("fill", fill_tieup(i, j, draft) ? "#000" : "#fff");
+    threadbox.style.stroke = "#333"
+    threadbox.style.strokeWidth = "2px"
+    drawdown.appendChild(threadbox);
+  }
+}
+
+const fill_treadling = function(i, j, draft) {
+  let treadle = i % draft.treadle_count + 1;
+  let row = j % draft.weft.length;
+  return draft.weft[row] == treadle;
+}
+
+for (let i=0; i < draft.treadle_count ; i++) {
+  for (let j=0; j < drawdown_width / pixel_width ; j++) {
+    let threadbox = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    threadbox.setAttribute("x", 800 + 20 + (i * pixel_width));
+    threadbox.setAttribute("y", 800 - ((j+1) * pixel_width));
+    threadbox.setAttribute("height", pixel_width);
+    threadbox.setAttribute("width", pixel_width);
+    threadbox.setAttribute("fill", fill_treadling(i, j, draft) ? "#000" : "#fff");
     threadbox.style.stroke = "#333"
     threadbox.style.strokeWidth = "2px"
     drawdown.appendChild(threadbox);
