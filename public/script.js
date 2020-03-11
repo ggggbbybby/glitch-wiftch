@@ -42,6 +42,7 @@ fetch("/dreams")
 */
 
 const draft = {
+  shaft_count: 4,
   warp: [1,2,3,4,3,2,1,4],
   weft: [1,2,3,4,3,2,1,4],
   tieup: ["there is no shaft 0", [1,2], [2, 3], [3, 4], [1, 4]]
@@ -51,7 +52,7 @@ const drawdown = document.getElementById("drawdown");
 const drawdown_width = 800;
 const pixel_width = 20;
 
-const fill = function(i, j, draft) {
+const fill_drawdown = function(i, j, draft) {
   let row = i % draft.weft.length;
   let col = j % draft.warp.length;
   let treadle = draft.weft[row];
@@ -68,11 +69,32 @@ for (let i=0; i < drawdown_width / pixel_width ; i++) { // rows
     threadbox.setAttribute("y", j * pixel_width);
     threadbox.setAttribute("height", pixel_width);
     threadbox.setAttribute("width", pixel_width);
-    threadbox.setAttribute("fill", fill(i, j, draft) ? "#f00" : "#fff")
+    threadbox.setAttribute("fill", fill_drawdown(i, j, draft) ? "#f00" : "#fff")
     threadbox.style.stroke = "#333"; //Set stroke colour
     threadbox.style.strokeWidth = "2px"; //Set stroke width
     drawdown.appendChild(threadbox);
   }
 }
+
+
+const fill_threading = function(i, j, draft) {
+  let shaft = i % draft.shaft_count;
+  let col = j % draft.warp.length;
+  return draft.warp[col] == shaft;
+}
+for (let i=0; i < draft.shaft_count ; i++) { // threading rows
+  for (let j=0; j < drawdown_width / pixel_width ; j++) { // threading cols
+    let threadbox = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    threadbox.setAttribute("x", i * pixel_width);
+    threadbox.setAttribute("y", 800 + 20 + j * pixel_width);
+    threadbox.setAttribute("height", pixel_width);
+    threadbox.setAttribute("width", pixel_width);
+    threadbox.setAttribute("fill", fill_threading(i, j, draft) ? "#000" : "#fff")
+    threadbox.style.stroke = "#333"
+    threadbox.style.strokeWidth = "2px"
+    drawdown.appendChild(threadbox);
+    
+  }
+}  
 
 
