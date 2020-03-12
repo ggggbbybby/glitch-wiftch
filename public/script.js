@@ -55,24 +55,28 @@ const draft = {
   ]
 };
 
-const threadbox_factory = function() {
-  let box = document.createElementNS(
-    "http://www.w3.org/2000/svg",
-    "rect"
-  );
-  box.setAttribute("height", pixel_width);
-  box.setAttribute("width", pixel_width);
-  box.style.stroke = "#333";
-  box.style.strokeWidth = "2px";
-  return box;
-}
 
 
 const draw = function(draft) {
   const drawdown = document.getElementById("drawdown");
   const drawdown_width = 800;
   const pixel_width = 12;
-
+  
+  const threadbox_factory = function(options) {
+    let box = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "rect"
+    );
+    box.setAttribute("height", pixel_width);
+    box.setAttribute("width", pixel_width);
+    box.style.stroke = "#333";
+    box.style.strokeWidth = "2px";
+    for (let [key, value] of Object.entries(options)) {
+  console.log(`${key}: ${value}`);
+}
+    options.forEach((attr, value) => box.setAttribute(attr, value));
+    return box;
+  }
 
   const fill_drawdown = function(i, j, draft) {
     let col = i % draft.warp.length;
@@ -113,13 +117,10 @@ const draw = function(draft) {
   // draw threading
   for (let i = 0; i < draft.shaft_count; i++) {
     for (let j = 0; j < drawdown_width / pixel_width; j++) {
-      let threadbox = threadbox_factory();
+      let threadbox = threadbox_factory({x: "foo"});
       threadbox.setAttribute("x", 800 - (j + 1) * pixel_width);
       threadbox.setAttribute("y", 800 + 20 + i * pixel_width);
-      threadbox.setAttribute(
-        "fill",
-        fill_threading(i, j, draft) ? "#000" : "#fff"
-      );
+      threadbox.setAttribute("fill", fill_threading(i, j, draft) ? "#000" : "#fff");
       drawdown.appendChild(threadbox);
     }
   }
