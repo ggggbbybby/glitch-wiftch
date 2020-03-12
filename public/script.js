@@ -46,7 +46,6 @@ const draft = {
   warp: [1, 2, 3, 4, 3, 2, 1, 4],
   weft: [1, 2, 3, 4, 3, 2, 1, 4],
   tieup: [
-    "there is no treadle 0",
     [1, 2],
     [2, 3],
     [3, 4],
@@ -64,7 +63,7 @@ const fill_drawdown = function(i, j, draft) {
   let col = i % draft.weft.length;
   let row = j % draft.warp.length;
   let treadle = draft.weft[row];
-  let shafts_down = draft.tieup[treadle];
+  let shafts_down = draft.tieup[treadle-1];
   if (!shafts_down) debugger;
   let shaft = draft.warp[col];
   return shafts_down.includes(shaft);
@@ -121,7 +120,7 @@ for (let i = 0; i < draft.shaft_count; i++) {
 }
 
 const fill_tieup = function(i, j, draft) {
-  let treadle = (i % draft.treadle_count) + 1;
+  let treadle = (i % draft.treadle_count);
   let shaft = (j % draft.shaft_count) + 1;
   if (!draft.tieup[treadle]) debugger;
   return draft.tieup[treadle].includes(shaft);
@@ -172,7 +171,15 @@ for (let i = 0; i < draft.treadle_count; i++) {
   }
 }
 const threading_sequence = function(draft) {
-  return [];
+  return draft.warp.map((shaft, index) => `${index+1}=${shaft}`);
+}
+
+const tieup_sequence = function(draft) {
+  return draft.tieup.map((shafts, index) => `${index+1}=${shafts.join(",")}`);
+}
+
+const treadling_sequence = function(draft) {
+  return draft.weft.map((treadle, index) => `${index+1}=${treadle}`);
 }
 
 const today = new Date().toDateString();
@@ -184,7 +191,7 @@ let wif = [
   "Developers=ggggbbybby@gmail.com",
   "Source Program=glitch-wiftch",
   "Source Version=1",
-  "\n",
+  "",
   "[CONTENTS]",
   "COLOR PALETTE=true",
   "TEXT=true",
@@ -195,13 +202,27 @@ let wif = [
   "THREADING=true",
   "TIEUP=true",
   "TREADLING=true",
-  "\n",
+  "",
   "[TEXT]",
   "Title=Glitch-Wiftch Demo",
   "\n",
   "[THREADING]",
   ...threading_sequence(draft),
-  "\n",
+  "",
+  "[TIEUP]",
+  ...tieup_sequence(draft),
+  "",
+  "[TREADLING]",
+  ...threading_sequence(draft),
+  "",
+  "[WEAVING]",
+  "Rising Shed=true",
+  "Shafts=4",
+  "Treadles=6",
+  ""
+  "[WARP]",
+  "Units=centimeters",
+  "Color=1",
   
   
 ];
