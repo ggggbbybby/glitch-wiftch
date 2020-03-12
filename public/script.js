@@ -205,7 +205,7 @@ let wif = [
   "TREADLING=true",
   "",
   "[TEXT]",
-  "Title=Glitch-Wiftch Demo",
+  `Title=${title}`,
   "",
   "[THREADING]",
   ...threading_sequence(draft),
@@ -249,3 +249,8 @@ console.log(wif_out);
  
 const wifbox = document.getElementById('wif-preview');
 wifbox.textContent = wif_out;
+
+const download = document.getElementById('download-wif');
+const wif_file = new Blob([wif_out], {type: 'text/plain'});
+const url = window.URL.createObjectURL(wif_file);
+download.href = url;
