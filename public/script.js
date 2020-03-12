@@ -214,7 +214,7 @@ let wif = [
   ...tieup_sequence(draft),
   "",
   "[TREADLING]",
-  ...threading_sequence(draft),
+  ...treadling_sequence(draft),
   "",
   "[WEAVING]",
   "Rising Shed=true",
@@ -254,3 +254,4 @@ const download = document.getElementById('download-wif');
 const wif_file = new Blob([wif_out], {type: 'text/plain'});
 const url = window.URL.createObjectURL(wif_file);
 download.href = url;
+download.download = `${title}.wif`;
