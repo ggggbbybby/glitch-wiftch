@@ -171,3 +171,9 @@ for (let i = 0; i < draft.treadle_count; i++) {
     drawdown.appendChild(threadbox);
   }
 }
+
+let wif = "";
+wif += "[WIF PREVIEW]"
+
+const wifbox = document.getElementById('wif-preview');
+wifbox.textContent = wif;
