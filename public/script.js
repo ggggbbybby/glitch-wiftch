@@ -43,7 +43,7 @@ fetch("/dreams")
 const draft = {
   shaft_count: 4,
   treadle_count: 6,
-  warp: [1, 2, 3, 4, 3, 2, 1, 4],
+  warp: [1,4,2,1,3,2,4,3,1,4,2,1,3,2,4,2,3,1,2,4,1,3,4,2,3,1,2,4,1,4,2,1,3,2,4,3,1,4,2,1,3,2,4,2,3,1,2,4,1,3,4,2,3,1,2,4],
   weft: [1, 2, 3, 4, 3, 2, 1, 4],
   tieup: [
     [1, 2],
@@ -57,7 +57,7 @@ const draft = {
 
 const drawdown = document.getElementById("drawdown");
 const drawdown_width = 800;
-const pixel_width = 20;
+const pixel_width = 10;
 
 const fill_drawdown = function(i, j, draft) {
   let col = i % draft.weft.length;
@@ -219,12 +219,28 @@ let wif = [
   "Rising Shed=true",
   "Shafts=4",
   "Treadles=6",
-  ""
+  "",
   "[WARP]",
   "Units=centimeters",
   "Color=1",
-  
-  
+  `Threads=${draft.warp.length}`,
+  "Spacing=0.2117",
+  "Thickness=0.2117",
+  "",
+  "[WEFT]",
+  "Units=centimeters",
+  "Color=2",
+  `Threads=${draft.weft.length}`,
+  "Spacing=0.2117",
+  "Thickness=0.2117",
+  "",
+  "[COLOR TABLE]",
+  "1=255,255,255",
+  "2=255,0,0",
+  "",
+  "[COLOR PALETTE]",
+  "Entries=2",
+  "Range=0,255"
 ];
 
 const wif_out = wif.join("\n");
