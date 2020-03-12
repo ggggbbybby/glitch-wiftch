@@ -44,24 +44,24 @@ const draft = {
   shaft_count: 4,
   treadle_count: 6,
   warp: [1,4,2,1,3,2,4,3,1,4,2,1,3,2,4,2,3,1,2,4,1,3,4,2,3,1,2,4,1,4,2,1,3,2,4,3,1,4,2,1,3,2,4,2,3,1,2,4,1,3,4,2,3,1,2,4],
-  weft: [1, 2, 3, 4, 3, 2, 1, 4],
+  weft: [1,5,2,6,1,3,2,4,1,5,2,6,1,3,2,4,1,5,2,6,1,6,2,5,1,4,2,3,1,6,2,5,1,4,2,3,1,6,2,5],
   tieup: [
+    [1, 3],
+    [2, 4],
     [1, 2],
     [2, 3],
     [3, 4],
-    [1, 4],
-    [1, 3],
-    [2, 4]
+    [1, 4]
   ]
 };
 
 const drawdown = document.getElementById("drawdown");
 const drawdown_width = 800;
-const pixel_width = 10;
+const pixel_width = 12;
 
 const fill_drawdown = function(i, j, draft) {
-  let col = i % draft.weft.length;
-  let row = j % draft.warp.length;
+  let col = i % draft.warp.length;
+  let row = j % draft.weft.length;
   let treadle = draft.weft[row];
   let shafts_down = draft.tieup[treadle-1];
   if (!shafts_down) debugger;
@@ -183,8 +183,9 @@ const treadling_sequence = function(draft) {
 }
 
 const today = new Date().toDateString();
+const title = document.getElementsByTagName('h1')[0].textContent;
 let wif = [
-  "\n",
+  "",
   "[WIF]",
   "[Version=1.1]",
   `Date=${today}`,
@@ -205,7 +206,7 @@ let wif = [
   "",
   "[TEXT]",
   "Title=Glitch-Wiftch Demo",
-  "\n",
+  "",
   "[THREADING]",
   ...threading_sequence(draft),
   "",
