@@ -173,16 +173,34 @@ for (let i = 0; i < draft.treadle_count; i++) {
 }
 
 
-let wif = ["\n"];
-wif.push("[WIF]");
-wif.push("Version=1.1");
-const today = "2020-03-11";
-wif.push(`Date=${today}`);
-wif.push("Developers=ggggbbybby@gmail.com");
-wif.push("Source Program=glitch-wif");
-wif.push("Source Version=1");
-wif.push("\n");
-
+const today = new Date().toDateString();
+let wif = [
+  "\n",
+  "[WIF]",
+  "[Version=1.1]",
+  `Date=${today}`,
+  "Developers=ggggbbybby@gmail.com",
+  "Source Program=glitch-wiftch",
+  "Source Version=1",
+  "\n",
+  "[CONTENTS]",
+  "COLOR PALETTE=true",
+  "TEXT=true",
+  "WEAVING=true",
+  "WARP=true",
+  "WEFT=true",
+  "COLOR TABLE=true",
+  "THREADING=true",
+  "TIEUP=true",
+  "TREADLING=true",
+  "\n",
+  "[TEXT]",
+  "Title=Glitch-Wiftch Demo",
+  "\n",
+  "[THREADING]",
+  
+  
+];
 
 const wif_out = wif.join("\n");
 console.log(wif_out);
