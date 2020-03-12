@@ -171,7 +171,9 @@ for (let i = 0; i < draft.treadle_count; i++) {
     drawdown.appendChild(threadbox);
   }
 }
-
+const threading_sequence = function(draft) {
+  return [];
+}
 
 const today = new Date().toDateString();
 let wif = [
@@ -198,6 +200,8 @@ let wif = [
   "Title=Glitch-Wiftch Demo",
   "\n",
   "[THREADING]",
+  ...threading_sequence(draft),
+  "\n",
   
   
 ];
