@@ -172,8 +172,20 @@ for (let i = 0; i < draft.treadle_count; i++) {
   }
 }
 
-let wif = "";
-wif += "[WIF PREVIEW]"
 
+let wif = ["\n"];
+wif.push("[WIF]");
+wif.push("Version=1.1");
+const today = "2020-03-11";
+wif.push(`Date=${today}`);
+wif.push("Developers=ggggbbybby@gmail.com");
+wif.push("Source Program=glitch-wif");
+wif.push("Source Version=1");
+wif.push("\n");
+
+
+const wif_out = wif.join("\n");
+console.log(wif_out);
+ 
 const wifbox = document.getElementById('wif-preview');
-wifbox.textContent = wif;
+wifbox.textContent = wif_out;
