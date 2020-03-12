@@ -8,7 +8,7 @@ const draw = function(draft) {
   const drawdown_width = 800;
   const pixel_width = 12;
 
-  const threadbox_factory = function({ x, y, fill, onClick }) {
+  const threadbox_factory = function({ i, j, x, y, fill, onClick=null }) {
     let box = document.createElementNS("http://www.w3.org/2000/svg", "rect");
     box.setAttribute("height", pixel_width);
     box.setAttribute("width", pixel_width);
@@ -17,7 +17,7 @@ const draw = function(draft) {
     box.setAttribute("x", x);
     box.setAttribute("y", y);
     box.setAttribute("fill", fill);
-    box.on('click')
+    if (onClick) box.addEventListener("click", () => { onClick(j, i+1, draft) })
     return box;
   };
 
@@ -55,6 +55,7 @@ const draw = function(draft) {
     for (let j = 0; j < drawdown_width / pixel_width; j++) {
       drawdown.appendChild(
         threadbox_factory({
+          i,j,
           x: 800 - (i + 1) * pixel_width,
           y: 800 - (j + 1) * pixel_width,
           fill: fill_drawdown(i, j) ? "#f00" : "#fff"
@@ -68,9 +69,11 @@ const draw = function(draft) {
     for (let j = 0; j < drawdown_width / pixel_width; j++) {
       drawdown.appendChild(
         threadbox_factory({
+          i,j,
           x: 800 - (j + 1) * pixel_width,
           y: 800 + 20 + i * pixel_width,
-          fill: fill_threading(i, j, draft) ? "#000" : "#fff"
+          fill: fill_threading(i, j, draft) ? "#000" : "#fff",
+          onClick: warpClick,
         })
       );
     }
@@ -81,6 +84,7 @@ const draw = function(draft) {
     for (let j = 0; j < draft.shaft_count; j++) {
       drawdown.appendChild(
         threadbox_factory({
+          i,j,
           x: 800 + 20 + i * pixel_width,
           y: 800 + 20 + j * pixel_width,
           fill: fill_tieup(i, j, draft) ? "#000" : "#fff"
@@ -93,6 +97,7 @@ const draw = function(draft) {
     for (let j = 0; j < drawdown_width / pixel_width; j++) {
       drawdown.appendChild(
         threadbox_factory({
+          i,j,
           x: 800 + 20 + i * pixel_width,
           y: 800 - (j + 1) * pixel_width,
           fill: fill_treadling(i, j, draft) ? "#000" : "#fff"
