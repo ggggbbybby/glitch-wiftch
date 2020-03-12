@@ -1,9 +1,14 @@
+const warpClick = function(thread, shaft, draft) {
+  draft.warp[thread] = shaft;
+  draw(draft);
+}
+
 const draw = function(draft) {
   const drawdown = document.getElementById("drawdown");
   const drawdown_width = 800;
   const pixel_width = 12;
 
-  const threadbox_factory = function({ x, y, fill }) {
+  const threadbox_factory = function({ x, y, fill, onClick }) {
     let box = document.createElementNS("http://www.w3.org/2000/svg", "rect");
     box.setAttribute("height", pixel_width);
     box.setAttribute("width", pixel_width);
@@ -12,6 +17,7 @@ const draw = function(draft) {
     box.setAttribute("x", x);
     box.setAttribute("y", y);
     box.setAttribute("fill", fill);
+    box.on('click')
     return box;
   };
 
@@ -184,109 +190,13 @@ const draw = function(draft) {
   download.download = `${title}.wif`;
 };
 
+
+
 const double_diagonal_twill = {
   shaft_count: 4,
   treadle_count: 6,
-  warp: [
-    1,
-    4,
-    2,
-    1,
-    3,
-    2,
-    4,
-    3,
-    1,
-    4,
-    2,
-    1,
-    3,
-    2,
-    4,
-    2,
-    3,
-    1,
-    2,
-    4,
-    1,
-    3,
-    4,
-    2,
-    3,
-    1,
-    2,
-    4,
-    1,
-    4,
-    2,
-    1,
-    3,
-    2,
-    4,
-    3,
-    1,
-    4,
-    2,
-    1,
-    3,
-    2,
-    4,
-    2,
-    3,
-    1,
-    2,
-    4,
-    1,
-    3,
-    4,
-    2,
-    3,
-    1,
-    2,
-    4
-  ],
-  weft: [
-    1,
-    5,
-    2,
-    6,
-    1,
-    3,
-    2,
-    4,
-    1,
-    5,
-    2,
-    6,
-    1,
-    3,
-    2,
-    4,
-    1,
-    5,
-    2,
-    6,
-    1,
-    6,
-    2,
-    5,
-    1,
-    4,
-    2,
-    3,
-    1,
-    6,
-    2,
-    5,
-    1,
-    4,
-    2,
-    3,
-    1,
-    6,
-    2,
-    5
-  ],
+  warp: [1, 4, 2, 1, 3, 2, 4, 3, 1, 4, 2, 1, 3, 2, 4, 2, 3, 1, 2, 4, 1, 3, 4, 2, 3, 1, 2, 4, 1, 4, 2, 1, 3, 2, 4, 3, 1, 4, 2, 1, 3, 2, 4, 2, 3, 1, 2, 4, 1, 3, 4, 2, 3, 1, 2, 4],
+  weft: [1, 5, 2, 6, 1, 3, 2, 4, 1, 5, 2, 6, 1, 3, 2, 4, 1, 5, 2, 6, 1, 6, 2, 5, 1, 4, 2, 3, 1, 6, 2, 5, 1, 4, 2, 3, 1, 6, 2, 5],
   tieup: [[1, 3], [2, 4], [1, 2], [2, 3], [3, 4], [1, 4]]
 };
 
