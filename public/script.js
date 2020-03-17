@@ -15,8 +15,11 @@ const drawGrid = function(height, width, shafts, treadles) {
       const row_type = j < height ? 'thread' : (j > height ? 'shaft' : 'gap');
       
       let box = null;
-      if (col_type == 'gap' && row_type == 'gap') box = null;
+      if (col_type == 'gap' || row_type == 'gap') box = null;
       if (col_type == 'thread' && row_type == 'thread') box = threadbox(i, j);
+      if (col_type == 'thread' && row_type == 'shaft') box = warpbox(i, j);
+      if (col_type == 'treadle' && row_type == 'thread') box = weftbox(i, j);
+      if (col_type == 'treadle' && row_type == '')
       
     }
   }
