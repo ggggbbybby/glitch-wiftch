@@ -241,5 +241,19 @@ let draft = {
 drawGrid(65, 65, 4, 6);
 drawDraft(draft);
 drawdown.addEventListener('click', (click) => {
+  const x = click.clientX;
+  const y = click.clientY;
+  console.log("click at", x, y, "on", click.relatedTarget);
+  
+  const col_type = x < drawdown_width ? 'warp' : (x > drawdown_width ? 'treadle' : 'gap');
+  const row_type = y < drawdown_width ? 'weft' : (y > drawdown_width ? 'shaft' : 'gap');
+  if (col_type == 'gap' || row_type == 'gap') return ;
+  
+  const col = switch col_type {
+    case 
+  }
+  (x < drawdown_width ? x : (x - drawdown_width - pixel_width)) / pixel_width;
+  const row = (y < drawdown_width ? y : (y - drawdown_width - pixel_width)) / pixel_width;
+  
   
 })
