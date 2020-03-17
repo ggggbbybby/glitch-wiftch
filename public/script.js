@@ -21,7 +21,7 @@ const tieupClick = function(shaft, treadle, draft) {
   draw(draft);
 }
 
-const make_box = function(x, y) {
+const make_box = function(x, y, data={}) {
   let box = document.createElementNS("http://www.w3.org/2000/svg", "rect");
   box.setAttribute("height", pixel_width);
   box.setAttribute("width", pixel_width);
@@ -30,26 +30,27 @@ const make_box = function(x, y) {
   box.setAttribute("x", x);
   box.setAttribute("y", y);
   box.setAttribute("fill", "#000");
+  data.forEach
   return box;
 }
 
 const threadbox = function(thread, treadle) {
   // threads start at (800, 800) & goes left-up
-  const x = 800 - (thread + 1)*pixel_width;
-  const y = 800 - (treadle + 1)*pixel_width;
-  return make_box(x, y);
+  const x = drawdown_width - (thread + 1)*pixel_width;
+  const y = drawdown_width - (treadle + 1)*pixel_width;
+  return make_box(x, y, {thread, treadle});
 }
 
 const warpbox = function(thread, treadle) {
   // warps start at (800, 820) & goes left-down
-  const x = 800 - thread*pixel_width;
-  const y = 800 + treadle*pixel_width;
+  const x = drawdown_width - thread*pixel_width;
+  const y = drawdown_width + treadle*pixel_width;
   return make_box(x, y);
 }
 
 const weftbox = function(thread, treadle) {
   // wefts start at (820, 800) & goes right-up
-  const x = 800 + 
+  const x = drawdown_width + thread*pixel_width;
 }
 
 const tieupbox = function(thread, treadle) {
@@ -66,9 +67,9 @@ const drawGrid = function(height, width, shafts, treadles) {
       let box = null;
       if (col_type == 'gap' || row_type == 'gap') box = null;
       else if (col_type == 'thread' && row_type == 'thread') box = threadbox(i, j);
-      else if (col_type == 'thread' && row_type == 'shaft') box = warpbox(i, j);
-      else if (col_type == 'treadle' && row_type == 'thread') box = weftbox(i, j);
-      else if (col_type == 'treadle' && row_type == '') box = tieupbox(i, j);
+      else if (col_type == 'thread' && row_type == 'shaft') box = warpbox(i, j%height - 1);
+      else if (col_type == 'treadle' && row_type == 'thread') box = weftbox(i%width - 1 , j);
+      else if (col_type == 'treadle' && row_type == '') box = tieupbox(i%width - 1, j%height - 1);
       else box = null;
       
       if (box) drawdown.appendChild(box);
