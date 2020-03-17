@@ -112,7 +112,7 @@ const drawDraft = function(draft) {
     return draft.tieup[treadle].includes(shaft);
   };
 
-  const fill_treadling = function(i, j, draft) {
+  const fill_treadling = function(i, j) {
     let treadle = (i % draft.treadle_count) + 1;
     let row = j % draft.weft.length;
     return draft.weft[row] == treadle;
@@ -120,72 +120,24 @@ const drawDraft = function(draft) {
   
   drawdown.querySelectorAll('rect').forEach((child) => {
     let fill = false;
-    switch (child.data.type) {
+    let data = child.dataset;
+    switch (data.type) {
       case 'drawdown':
-        fill = fill_drawdown(child.data.thread, child.data.shaft);
+        fill = fill_drawdown(data.thread, data.treadle) ? "#f00" : "#fff";
         break;
       case 'warp':
-        fill = fill_warp(child.data.thread, child.data.shaft);
-      case 'weft'
+        fill = fill_threading(data.thread, data.treadle) ? "#000" : "#fff";
+        break;
+      case 'weft':
+        fill = fill_treadling(data.thread, data.treadle) ? "#000" : "#fff";
+        break;
+      case 'tieup':
+        fill = fill_tieup(data.thread, data.treadle) ? "#000" : "#fff";
+        break;
     }
+    child.setAttribute('fill', fill);
     
   });
-
-  // draw drawdown
-  for (let i = 0; i < drawdown_width / pixel_width; i++) {
-    for (let j = 0; j < drawdown_width / pixel_width; j++) {
-      drawdown.appendChild(
-        threadbox_factory({
-          i,j,
-          x: 800 - (i + 1) * pixel_width,
-          y: 800 - (j + 1) * pixel_width,
-          fill: fill_drawdown(i, j) ? "#f00" : "#fff"
-        })
-      );
-    }
-  }
-
-  // draw threading
-  for (let i = 0; i < draft.shaft_count; i++) {
-    for (let j = 0; j < drawdown_width / pixel_width; j++) {
-      drawdown.appendChild(
-        threadbox_factory({
-          i,j,
-          x: 800 - (j + 1) * pixel_width,
-          y: 800 + 20 + i * pixel_width,
-          fill: fill_threading(i, j) ? "#000" : "#fff",
-          onClick: warpClick,
-        })
-      );
-    }
-  }
-
-  // draw tie-up
-  for (let i = 0; i < draft.treadle_count; i++) {
-    for (let j = 0; j < draft.shaft_count; j++) {
-      drawdown.appendChild(
-        threadbox_factory({
-          i,j,
-          x: 800 + 20 + i * pixel_width,
-          y: 800 + 20 + j * pixel_width,
-          fill: fill_tieup(i, j) ? "#000" : "#fff"
-        })
-      );
-    }
-  }
-
-  for (let i = 0; i < draft.treadle_count; i++) {
-    for (let j = 0; j < drawdown_width / pixel_width; j++) {
-      drawdown.appendChild(
-        threadbox_factory({
-          i,j,
-          x: 800 + 20 + i * pixel_width,
-          y: 800 - (j + 1) * pixel_width,
-          fill: fill_treadling(i, j) ? "#000" : "#fff"
-        })
-      );
-    }
-  }
 
   const threading_sequence = function(draft) {
     return draft.warp.map((shaft, index) => `${index + 1}=${shaft}`);
@@ -286,5 +238,6 @@ const double_diagonal_twill = {
   tieup: [[1, 3], [2, 4], [1, 2], [2, 3], [3, 4], [1, 4]]
 };
 
-//draw(double_diagonal_twill);
+
 drawGrid(50, 50, 4, 6);
+drawDraft(double_diagonal_twill);
