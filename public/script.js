@@ -99,13 +99,13 @@ const drawDraft = function(draft) {
     return shafts_down.includes(shaft);
   };
 
-  const fill_threading = function(i, j, draft) {
+  const fill_threading = function(i, j) {
     let shaft = (i % draft.shaft_count) + 1;
     let col = j % draft.warp.length;
     return draft.warp[col] == shaft;
   };
 
-  const fill_tieup = function(i, j, draft) {
+  const fill_tieup = function(i, j) {
     let treadle = i % draft.treadle_count;
     let shaft = (j % draft.shaft_count) + 1;
     if (!draft.tieup[treadle]) debugger;
@@ -118,7 +118,16 @@ const drawDraft = function(draft) {
     return draft.weft[row] == treadle;
   };
   
-  drawdown.children.forEach((child) => {
+  drawdown.querySelectorAll('rect').forEach((child) => {
+    let fill = false;
+    switch (child.data.type) {
+      case 'drawdown':
+        fill = fill_drawdown(child.data.thread, child.data.shaft);
+        break;
+      case 'warp':
+        fill = fill_warp(child.data.thread, child.data.shaft);
+        
+    }
     
   });
 
@@ -144,7 +153,7 @@ const drawDraft = function(draft) {
           i,j,
           x: 800 - (j + 1) * pixel_width,
           y: 800 + 20 + i * pixel_width,
-          fill: fill_threading(i, j, draft) ? "#000" : "#fff",
+          fill: fill_threading(i, j) ? "#000" : "#fff",
           onClick: warpClick,
         })
       );
@@ -159,7 +168,7 @@ const drawDraft = function(draft) {
           i,j,
           x: 800 + 20 + i * pixel_width,
           y: 800 + 20 + j * pixel_width,
-          fill: fill_tieup(i, j, draft) ? "#000" : "#fff"
+          fill: fill_tieup(i, j) ? "#000" : "#fff"
         })
       );
     }
@@ -172,7 +181,7 @@ const drawDraft = function(draft) {
           i,j,
           x: 800 + 20 + i * pixel_width,
           y: 800 - (j + 1) * pixel_width,
-          fill: fill_treadling(i, j, draft) ? "#000" : "#fff"
+          fill: fill_treadling(i, j) ? "#000" : "#fff"
         })
       );
     }
