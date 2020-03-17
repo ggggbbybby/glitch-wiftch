@@ -99,10 +99,8 @@ const drawDraft = function(draft) {
     return shafts_down.includes(shaft);
   };
 
-  const fill_threading = function(i, j) {
-    let shaft = (i % draft.shaft_count) + 1;
-    let col = j % draft.warp.length;
-    return draft.warp[col] == shaft;
+  const fill_threading = function(col, row) {
+    return draft.warp[col % draft.warp.length] == row + 1;
   };
 
   const fill_tieup = function(i, j) {
@@ -120,20 +118,20 @@ const drawDraft = function(draft) {
   
   drawdown.querySelectorAll('rect').forEach((child) => {
     let fill = false;
-    const thread = parseInt(child.dataset.thread);
-    const treadle = parseInt(child.dataset.treadle);
+    const col = parseInt(child.dataset.thread);
+    const row = parseInt(child.dataset.treadle);
     switch (child.dataset.type) {
       case 'drawdown':
-        fill = fill_drawdown(thread, treadle+1) ? "#f00" : "#fff";
+        fill = fill_drawdown(col, row) ? "#f00" : "#fff";
         break;
       case 'warp':
-        fill = fill_threading(thread, treadle) ? "#000" : "#fff";
+        fill = fill_threading(col, row) ? "#000" : "#fff";
         break;
       case 'weft':
-        fill = fill_treadling(thread, treadle) ? "#000" : "#fff";
+        fill = fill_treadling(col, row) ? "#000" : "#fff";
         break;
       case 'tieup':
-        fill = fill_tieup(thread, treadle) ? "#000" : "#fff";
+        fill = fill_tieup(col, row) ? "#000" : "#fff";
         break;
     }
     child.setAttribute('fill', fill);
@@ -231,7 +229,7 @@ const drawDraft = function(draft) {
 
 
 
-const double_diagonal_twill = {
+let draft = {
   shaft_count: 4,
   treadle_count: 6,
   warp: [1, 4, 2, 1, 3, 2, 4, 3, 1, 4, 2, 1, 3, 2, 4, 2, 3, 1, 2, 4, 1, 3, 4, 2, 3, 1, 2, 4, 1, 4, 2, 1, 3, 2, 4, 3, 1, 4, 2, 1, 3, 2, 4, 2, 3, 1, 2, 4, 1, 3, 4, 2, 3, 1, 2, 4],
@@ -241,4 +239,7 @@ const double_diagonal_twill = {
 
 
 drawGrid(65, 65, 4, 6);
-drawDraft(double_diagonal_twill);
+drawDraft(draft);
+drawdown.addEventListener('click', (click) => {
+  
+})
