@@ -3,6 +3,25 @@ const warpClick = function(thread, shaft, draft) {
   draw(draft);
 }
 
+const threadbox = function(row, col) {
+  // threads start at bottom-right corner
+  
+}
+
+const drawGrid = function(height, width, shafts, treadles) {
+  for (let i = 0; i < width + treadles + 1; i++) {
+    for (let j = 0; j < height + shafts + 1; j++) {
+      const col_type = i < width ? 'thread' : (i > width? 'treadle' : 'gap');
+      const row_type = j < height ? 'thread' : (j > height ? 'shaft' : 'gap');
+      
+      let box = null;
+      if (col_type == 'gap' && row_type == 'gap') box = null;
+      if (col_type == 'thread' && row_type == 'thread') box = threadbox(i, j);
+      
+    }
+  }
+}
+
 const draw = function(draft) {
   const drawdown = document.getElementById("drawdown");
   const drawdown_width = 800;
@@ -17,7 +36,7 @@ const draw = function(draft) {
     box.setAttribute("x", x);
     box.setAttribute("y", y);
     box.setAttribute("fill", fill);
-    if (onClick) box.addEventListener("click", () => { onClick(j, i+1, draft) })
+    if (onClick) box.addEventListener("click", () => { console.log("click", j, i) ; onClick(j, i+1, draft) })
     return box;
   };
 
