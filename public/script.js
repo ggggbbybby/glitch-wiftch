@@ -241,6 +241,13 @@ let draft = {
 drawGrid(65, 65, 4, 6);
 drawDraft(draft);
 const pt = drawdown.createSVGPoint();
+const toggle_shaft = (shafts, shaft) => {
+  if (shafts.includes(shaft)) {
+    return shafts.filter((s) => s != shaft);
+  } else {
+    return [shaft, ...shafts];
+  }
+}
 drawdown.addEventListener('click', (click) => {
   pt.x = click.clientX;
   pt.y = click.clientY;
@@ -275,5 +282,7 @@ drawdown.addEventListener('click', (click) => {
   console.log(`you clicked on ${col_type}-${row_type} @ ${col},${row}`);
   
   if (col_type == 'warp' && row_type == 'shaft') draft.warp[col] = row + 1
-  if (col_type == '')
+  if (col_type == 'treadle' && row_type == 'weft') draft.weft[row] = col + 1;
+  if (col_type == 'treadle' && row_type == 'shaft') draft.tieup[col] = toggle_shaft(draft.tieup[col], row + 1);
+  drawDraft(draft);
 })
