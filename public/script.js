@@ -126,7 +126,7 @@ const drawDraft = function(draft) {
         break;
       case 'warp':
         fill = fill_warp(child.data.thread, child.data.shaft);
-        
+      case 'weft'
     }
     
   });
