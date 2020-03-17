@@ -240,10 +240,12 @@ let draft = {
 
 drawGrid(65, 65, 4, 6);
 drawDraft(draft);
+const pt = drawdown.createSVGPoint();
 drawdown.addEventListener('click', (click) => {
-  const x = click.clientX;
-  const y = click.clientY;
-  console.log("click at", x, y, "on", click.relatedTarget);
+  pt.x = click.clientX;
+  pt.y = click.clientY;
+  const cursorpt = pt.matrixTransform(drawdown.getScreenCTM().inverse());
+  const {x, y} = cursorpt;
   
   const col_type = x < drawdown_width ? 'warp' : (x > drawdown_width ? 'treadle' : 'gap');
   const row_type = y < drawdown_width ? 'weft' : (y > drawdown_width ? 'shaft' : 'gap');
@@ -251,7 +253,7 @@ drawdown.addEventListener('click', (click) => {
   let col;
   switch (col_type) {
     case 'warp':
-      col = x;
+      col = drawdown_width - x;
       break;
     case 'treadle':
       col = x - drawdown_width - pixel_width;
@@ -262,7 +264,7 @@ drawdown.addEventListener('click', (click) => {
   let row;
   switch (row_type) {
     case 'weft':
-      row = y;
+      row = drawdown_width - y;
       break;
     case 'shaft':
       row = y - drawdown_width - pixel_width;
@@ -270,5 +272,8 @@ drawdown.addEventListener('click', (click) => {
   }
   row = Math.floor(row / pixel_width);
   
-  console.log(`you clicked on ${col_type}-${row_type} @ ${col},${row}`); 
+  console.log(`you clicked on ${col_type}-${row_type} @ ${col},${row}`);
+  
+  if (col_type == 'warp' && row_type == 'shaft') draft.warp[col] = row + 1
+  if (col_type == '')
 })
