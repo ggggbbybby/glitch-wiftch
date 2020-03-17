@@ -38,26 +38,33 @@ const box = function(x, y, data={}) {
 
 const threadbox = function(thread, treadle) {
   // threads start at (800, 800) & goes left-up
+  const type = 'drawdown'
   const x = drawdown_width - (thread + 1)*pixel_width;
   const y = drawdown_width - (treadle + 1)*pixel_width;
-  return box(x, y, {thread, treadle});
+  return box(x, y, {thread, treadle, type});
 }
 
 const warpbox = function(thread, treadle) {
   // warps start at (800, 820) & goes left-down
-  const x = drawdown_width - thread*pixel_width;
-  const y = drawdown_width + treadle*pixel_width;
-  return box(x, y, {thread, treadle});
+  const type = 'warp'
+  const x = drawdown_width - (thread + 1)*pixel_width;
+  const y = drawdown_width + (treadle + 1)*pixel_width;
+  return box(x, y, {thread, treadle, type});
 }
 
 const weftbox = function(thread, treadle) {
   // wefts start at (820, 800) & goes right-up
-  const x = drawdown_width + thread*pixel_width;
-  const y = drawdown_width - treadle*pixel_width;
+  const type = 'weft'
+  const x = drawdown_width + (thread + 1)*pixel_width;
+  const y = drawdown_width - (treadle + 1)*pixel_width;
+  return box(x, y, {thread, treadle, type});
 }
 
 const tieupbox = function(thread, treadle) {
-  
+  const type = 'tieup'
+  const x = drawdown_width + (thread + 1)*pixel_width;
+  const y = drawdown_width + (treadle + 1)*pixel_width;
+  return box(x, y, {thread, treadle, type});
 }
 
 const drawGrid = function(height, width, shafts, treadles) {
@@ -72,7 +79,7 @@ const drawGrid = function(height, width, shafts, treadles) {
       else if (col_type == 'thread' && row_type == 'thread') box = threadbox(i, j);
       else if (col_type == 'thread' && row_type == 'shaft') box = warpbox(i, j%height - 1);
       else if (col_type == 'treadle' && row_type == 'thread') box = weftbox(i%width - 1 , j);
-      else if (col_type == 'treadle' && row_type == '') box = tieupbox(i%width - 1, j%height - 1);
+      else if (col_type == 'treadle' && row_type == 'shaft') box = tieupbox(i%width - 1, j%height - 1);
       else box = null;
       
       if (box) drawdown.appendChild(box);
@@ -80,19 +87,7 @@ const drawGrid = function(height, width, shafts, treadles) {
   }
 }
 
-const draw = function(draft) {
-  const threadbox_factory = function({ i, j, x, y, fill, onClick=null }) {
-    let box = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-    box.setAttribute("height", pixel_width);
-    box.setAttribute("width", pixel_width);
-    box.style.stroke = "#333";
-    box.style.strokeWidth = "2px";
-    box.setAttribute("x", x);
-    box.setAttribute("y", y);
-    box.setAttribute("fill", fill);
-    if (onClick) box.addEventListener("click", () => { console.log("click", j, i) ; onClick(j, i+1, draft) })
-    return box;
-  };
+const drawDraft = function(draft) {
 
   const fill_drawdown = function(i, j) {
     let col = i % draft.warp.length;
@@ -122,6 +117,10 @@ const draw = function(draft) {
     let row = j % draft.weft.length;
     return draft.weft[row] == treadle;
   };
+  
+  drawdown.children.forEach((child) => {
+    
+  });
 
   // draw drawdown
   for (let i = 0; i < drawdown_width / pixel_width; i++) {
