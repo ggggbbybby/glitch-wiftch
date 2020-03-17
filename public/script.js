@@ -3,7 +3,7 @@ const warpClick = function(thread, shaft, draft) {
   draw(draft);
 }
 
-const threadbox = function(row, col) {
+const threadbox = function(thread, treadle) {
   // threads start at bottom-right corner
   
 }
