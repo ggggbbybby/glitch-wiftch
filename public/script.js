@@ -1,35 +1,75 @@
+const drawdown = document.getElementById("drawdown");
+const drawdown_width = 800;
+const pixel_width = 12;
+
 const warpClick = function(thread, shaft, draft) {
   draft.warp[thread] = shaft;
   draw(draft);
 }
 
+const weftClick = function(thread, treadle, draft) {
+  draft.weft[thread] = treadle;
+  draw(draft);
+}
+
+const tieupClick = function(shaft, treadle, draft) {
+  draft.tieup[treadle] << shaft
+  draw(draft);
+}
+
+const make_box = function() {
+  let box = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+  box.setAttribute("height", pixel_width);
+  box.setAttribute("width", pixel_width);
+  box.style.stroke = "#333";
+  box.style.strokeWidth = "2px";
+  return box;
+}
+
 const threadbox = function(thread, treadle) {
   // threads start at bottom-right corner
+  const x = 0;
+  const y = 0;
+  let box = make_box();
+  box.setAttribute("x", x);
+  box.setAttribute("y", y);
+  box.setAttribute("fill", "papayawhip");
+  return box;
+}
+
+const warpbox = function(thread, treadle) {
+  
+}
+
+const weftbox = function(thread, treadle) {
+  
+}
+
+const tieupbox = function(thread, treadle) {
   
 }
 
 const drawGrid = function(height, width, shafts, treadles) {
   for (let i = 0; i < width + treadles + 1; i++) {
     for (let j = 0; j < height + shafts + 1; j++) {
+      // when i == width or j == height, make a gap for readability
       const col_type = i < width ? 'thread' : (i > width? 'treadle' : 'gap');
       const row_type = j < height ? 'thread' : (j > height ? 'shaft' : 'gap');
       
       let box = null;
       if (col_type == 'gap' || row_type == 'gap') box = null;
-      if (col_type == 'thread' && row_type == 'thread') box = threadbox(i, j);
-      if (col_type == 'thread' && row_type == 'shaft') box = warpbox(i, j);
-      if (col_type == 'treadle' && row_type == 'thread') box = weftbox(i, j);
-      if (col_type == 'treadle' && row_type == '')
+      else if (col_type == 'thread' && row_type == 'thread') box = threadbox(i, j);
+      else if (col_type == 'thread' && row_type == 'shaft') box = warpbox(i, j);
+      else if (col_type == 'treadle' && row_type == 'thread') box = weftbox(i, j);
+      else if (col_type == 'treadle' && row_type == '') box = tieupbox(i, j);
+      else box = null;
       
+      if (box) drawdown.appendChild(box);
     }
   }
 }
 
 const draw = function(draft) {
-  const drawdown = document.getElementById("drawdown");
-  const drawdown_width = 800;
-  const pixel_width = 12;
-
   const threadbox_factory = function({ i, j, x, y, fill, onClick=null }) {
     let box = document.createElementNS("http://www.w3.org/2000/svg", "rect");
     box.setAttribute("height", pixel_width);
@@ -205,7 +245,7 @@ const draw = function(draft) {
   ];
 
   const wif_out = wif.join("\n");
-  console.log(wif_out);
+  // console.log(wif_out);
 
   const wifbox = document.getElementById("wif-preview");
   wifbox.textContent = wif_out;
@@ -227,4 +267,5 @@ const double_diagonal_twill = {
   tieup: [[1, 3], [2, 4], [1, 2], [2, 3], [3, 4], [1, 4]]
 };
 
-draw(double_diagonal_twill);
+//draw(double_diagonal_twill);
+drawGrid();
