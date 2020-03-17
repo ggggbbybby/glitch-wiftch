@@ -13,36 +13,43 @@ const weftClick = function(thread, treadle, draft) {
 }
 
 const tieupClick = function(shaft, treadle, draft) {
-  draft.tieup[treadle] << shaft
+  if (draft.tieup[treadle].includes(shaft)) {
+    draft.tieup[treadle] = draft.tieup[treadle].filter((e) => e != shaft)
+  } else {
+    draft.tieup[treadle] << shaft;
+  }
   draw(draft);
 }
 
-const make_box = function() {
+const make_box = function(x, y) {
   let box = document.createElementNS("http://www.w3.org/2000/svg", "rect");
   box.setAttribute("height", pixel_width);
   box.setAttribute("width", pixel_width);
   box.style.stroke = "#333";
   box.style.strokeWidth = "2px";
+  box.setAttribute("x", x);
+  box.setAttribute("y", y);
+  box.setAttribute("fill", "#000");
   return box;
 }
 
 const threadbox = function(thread, treadle) {
-  // threads start at bottom-right corner
-  const x = 0;
-  const y = 0;
-  let box = make_box();
-  box.setAttribute("x", x);
-  box.setAttribute("y", y);
-  box.setAttribute("fill", "papayawhip");
-  return box;
+  // threads start at (800, 800) & goes left-up
+  const x = 800 - (thread + 1)*pixel_width;
+  const y = 800 - (treadle + 1)*pixel_width;
+  return make_box(x, y);
 }
 
 const warpbox = function(thread, treadle) {
-  
+  // warps start at (800, 820) & goes left-down
+  const x = 800 - thread*pixel_width;
+  const y = 800 + treadle*pixel_width;
+  return make_box(x, y);
 }
 
 const weftbox = function(thread, treadle) {
-  
+  // wefts start at (820, 800) & goes right-up
+  const x = 800 + 
 }
 
 const tieupbox = function(thread, treadle) {
@@ -268,4 +275,4 @@ const double_diagonal_twill = {
 };
 
 //draw(double_diagonal_twill);
-drawGrid();
+drawGrid(50, 50, 4, 6);
