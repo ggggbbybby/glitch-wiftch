@@ -21,7 +21,7 @@ const tieupClick = function(shaft, treadle, draft) {
   draw(draft);
 }
 
-const make_box = function(x, y, data={}) {
+const box = function(x, y, data={}) {
   let box = document.createElementNS("http://www.w3.org/2000/svg", "rect");
   box.setAttribute("height", pixel_width);
   box.setAttribute("width", pixel_width);
@@ -29,8 +29,10 @@ const make_box = function(x, y, data={}) {
   box.style.strokeWidth = "2px";
   box.setAttribute("x", x);
   box.setAttribute("y", y);
-  box.setAttribute("fill", "#000");
-  data.forEach
+  box.setAttribute("fill", "#fff");
+  for (let [key, value] of Object.entries(data)) {
+    box.setAttribute(`data-${key}`, value);
+  }
   return box;
 }
 
@@ -38,19 +40,20 @@ const threadbox = function(thread, treadle) {
   // threads start at (800, 800) & goes left-up
   const x = drawdown_width - (thread + 1)*pixel_width;
   const y = drawdown_width - (treadle + 1)*pixel_width;
-  return make_box(x, y, {thread, treadle});
+  return box(x, y, {thread, treadle});
 }
 
 const warpbox = function(thread, treadle) {
   // warps start at (800, 820) & goes left-down
   const x = drawdown_width - thread*pixel_width;
   const y = drawdown_width + treadle*pixel_width;
-  return make_box(x, y);
+  return box(x, y, {thread, treadle});
 }
 
 const weftbox = function(thread, treadle) {
   // wefts start at (820, 800) & goes right-up
   const x = drawdown_width + thread*pixel_width;
+  const y = drawdown_width - treadle*pixel_width;
 }
 
 const tieupbox = function(thread, treadle) {
