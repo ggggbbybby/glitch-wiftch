@@ -120,19 +120,20 @@ const drawDraft = function(draft) {
   
   drawdown.querySelectorAll('rect').forEach((child) => {
     let fill = false;
-    let data = child.dataset;
-    switch (data.type) {
+    const thread = parseInt(child.dataset.thread);
+    const treadle = parseInt(child.dataset.treadle);
+    switch (child.dataset.type) {
       case 'drawdown':
-        fill = fill_drawdown(data.thread, data.treadle) ? "#f00" : "#fff";
+        fill = fill_drawdown(thread, treadle+1) ? "#f00" : "#fff";
         break;
       case 'warp':
-        fill = fill_threading(data.thread, data.treadle) ? "#000" : "#fff";
+        fill = fill_threading(thread, treadle) ? "#000" : "#fff";
         break;
       case 'weft':
-        fill = fill_treadling(data.thread, data.treadle) ? "#000" : "#fff";
+        fill = fill_treadling(thread, treadle) ? "#000" : "#fff";
         break;
       case 'tieup':
-        fill = fill_tieup(data.thread, data.treadle) ? "#000" : "#fff";
+        fill = fill_tieup(thread, treadle) ? "#000" : "#fff";
         break;
     }
     child.setAttribute('fill', fill);
@@ -239,5 +240,5 @@ const double_diagonal_twill = {
 };
 
 
-drawGrid(50, 50, 4, 6);
+drawGrid(65, 65, 4, 6);
 drawDraft(double_diagonal_twill);
