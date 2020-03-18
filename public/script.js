@@ -76,8 +76,8 @@ drawdown.addEventListener('click', (click) => {
   
   console.log(`you clicked on ${col_type}-${row_type} @ ${col},${row}`);
   
-  if (col_type == 'warp' && row_type == 'shaft') draft.warp[col] = row + 1
-  if (col_type == 'treadle' && row_type == 'weft') draft.weft[row] = col + 1;
+  if (col_type == 'warp' && row_type == 'shaft') draft.warp[col%draft.warp.length] = row + 1
+  if (col_type == 'treadle' && row_type == 'weft') draft.weft[row%draft.weft.length] = col + 1;
   if (col_type == 'treadle' && row_type == 'shaft') draft.tieup[col] = toggle_shaft(draft.tieup[col], row + 1);
   drawDraft(drawdown, draft);
   generateWIF(draft);
@@ -85,3 +85,4 @@ drawdown.addEventListener('click', (click) => {
 
 drawGrid(drawdown, {warps: 65, wefts: 65, shafts: 4, treadles: 6});
 drawDraft(drawdown, draft);
+generateWIF(draft);

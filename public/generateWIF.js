@@ -48,7 +48,7 @@ const generateWIF = function(draft) {
     ...treadling_sequence(draft),
     "",
     "[WEAVING]",
-    "Rising Shed=true",
+    "Rising Shed=false",
     "Shafts=4",
     "Treadles=6",
     "",
