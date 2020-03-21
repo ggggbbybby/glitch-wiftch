@@ -2,29 +2,6 @@ const drawdown = document.getElementById("drawdown");
 const drawdown_width = 800;
 const pixel_width = 12;
 
-const warpClick = function(thread, shaft, draft) {
-  draft.warp[thread] = shaft;
-  drawDraft(draft);
-}
-
-const weftClick = function(thread, treadle, draft) {
-  draft.weft[thread] = treadle;
-  drawDraft(draft);
-}
-
-const tieupClick = function(shaft, treadle, draft) {
-  if (draft.tieup[treadle].includes(shaft)) {
-    draft.tieup[treadle] = draft.tieup[treadle].filter((e) => e != shaft)
-  } else {
-    draft.tieup[treadle] << shaft;
-  }
-  drawDraft(draft);
-}
-
-
-
-
-
 let draft = {
   shaft_count: 4,
   treadle_count: 6,
@@ -74,7 +51,7 @@ drawdown.addEventListener('click', (click) => {
   }
   row = Math.floor(row / pixel_width);
   
-  console.log(`you clicked on ${col_type}-${row_type} @ ${col},${row}`);
+  //console.log(`you clicked on ${col_type}-${row_type} @ ${col},${row}`);
   
   if (col_type == 'warp' && row_type == 'shaft') draft.warp[col%draft.warp.length] = row + 1
   if (col_type == 'treadle' && row_type == 'weft') draft.weft[row%draft.weft.length] = col + 1;
