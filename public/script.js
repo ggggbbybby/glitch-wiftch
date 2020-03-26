@@ -63,11 +63,35 @@ drawdown.addEventListener('click', (click) => {
   generateWIF(draft);
 })
 
-pixel_size.addEventListener('change', (change) => {
-  
-})
+const clearGrid = function(grid) {
+  while (grid.firstChild) {
+    grid.firstChild.remove();
+  }
+}
 
+const getState = function() {
+  // read state from selectors
+  return {
+    pixel_size: parseInt(pixel_size.value),
+    warps: parseInt(warp_thread_count.value),
+    wefts: parseInt(weft_thread_count.value),
+    shafts: parseInt(shaft_count.value),
+    treadles: parseInt(treadle_count.value),
+  }
+}
 
-drawGrid(drawdown, {warps: parseInt(warp_thread_count.value), wefts: parseInt(weft_thread_count), shafts: parseInt(shaft_count), treadles: parseInt(treadle_count)});
+const redrawGrid = function() {
+  clearGrid(drawdown);
+  drawGrid(drawdown, getState());
+  drawDraft(drawdown, draft);
+}
+
+pixel_size.addEventListener('input', () => redrawGrid());
+warp_thread_count.addEventListener('input', () => redrawGrid());
+pixel_size.addEventListener('input', () => redrawGrid());
+pixel_size.addEventListener('input', () => redrawGrid());
+pixel_size.addEventListener('input', () => redrawGrid());
+
+drawGrid(drawdown, getState());
 drawDraft(drawdown, draft);
 generateWIF(draft);
