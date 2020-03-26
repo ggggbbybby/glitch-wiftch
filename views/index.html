@@ -25,9 +25,28 @@
     </header>
 
     <main>
-      <svg id="drawdown" width="884" height="860">
-      </svg>
-      
+      <div style="display:flex;">
+        <svg id="drawdown" width="884" height="860">
+        </svg>
+        <div>
+          <label>
+            Pixel Size
+            <input type="number" id="pixel-size" value="12"/>
+          </label>
+          
+          <label>
+            # Warp Threads
+            <input type="number" id="warp-threads" value="64"/>
+          </label>
+          
+          <label>
+            # Weft Threads
+            <input type="number" id="weft-threads" value="64"/>
+          </label>
+        </div>
+
+      </div>
+
       <div>
       <a id="download-wif" download="glitch-wiftch.wif" href=""><button>
         Download WIF

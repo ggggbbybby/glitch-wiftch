@@ -1,6 +1,8 @@
 const drawdown = document.getElementById("drawdown");
 const drawdown_width = 800;
-const pixel_width = 12;
+const pixel_width = parseInt(document.getElementById("pixel-width").value);
+const warp_thread_count = parseInt(document.getElementById("warp-threads").value);
+const weft_thread_count = parseInt(document.getElementById("weft-threads").value);
 
 let draft = {
   shaft_count: 4,
