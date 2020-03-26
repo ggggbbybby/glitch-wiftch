@@ -1,3 +1,4 @@
+
 const box = function(x, y, data={}) {
   let box = document.createElementNS("http://www.w3.org/2000/svg", "rect");
   box.setAttribute("height", pixel_width);
