@@ -1,8 +1,9 @@
 const drawdown = document.getElementById("drawdown");
 const drawdown_width = 800;
-const pixel_width = parseInt(document.getElementById("pixel-width").value);
-const warp_thread_count = parseInt(document.getElementById("warp-threads").value);
-const weft_thread_count = parseInt(document.getElementById("weft-threads").value);
+
+const [pixel_size, warp_thread_count, weft_thread_count, shaft_count, treadle_count] = ["pixel-size", "warp-threads", "weft-threads", "shafts", "treadles"].map((id) => document.getElementById(id));
+
+const pixel_width = parseInt(pixel_size.value);
 
 let draft = {
   shaft_count: 4,
@@ -62,6 +63,11 @@ drawdown.addEventListener('click', (click) => {
   generateWIF(draft);
 })
 
-drawGrid(drawdown, {warps: 65, wefts: 65, shafts: 4, treadles: 6});
+pixel_size.addEventListener('change', (change) => {
+  
+})
+
+
+drawGrid(drawdown, {warps: parseInt(warp_thread_count.value), wefts: parseInt(weft_thread_count), shafts: parseInt(shaft_count), treadles: parseInt(treadle_count)});
 drawDraft(drawdown, draft);
 generateWIF(draft);
