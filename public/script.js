@@ -88,9 +88,9 @@ const redrawGrid = function() {
 
 pixel_size.addEventListener('input', () => redrawGrid());
 warp_thread_count.addEventListener('input', () => redrawGrid());
-pixel_size.addEventListener('input', () => redrawGrid());
-pixel_size.addEventListener('input', () => redrawGrid());
-pixel_size.addEventListener('input', () => redrawGrid());
+weft_thread_count.addEventListener('input', () => redrawGrid());
+shaft_count.addEventListener('input', () => redrawGrid());
+treadle_count.addEventListener('input', () => redrawGrid());
 
 drawGrid(drawdown, getState());
 drawDraft(drawdown, draft);
