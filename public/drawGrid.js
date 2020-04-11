@@ -19,7 +19,7 @@ const threadbox = function(thread, treadle, pixel_size) {
   // threads start at down-right & goes left-up
   const type = 'drawdown'
   const x = drawdown_width - (thread + 1)*pixel_size;
-  const y = drawdown_width - (treadle + 1)*pixel_size;
+  const y = drawdown_height - (treadle + 1)*pixel_size;
   return box(x, y, pixel_size, {thread, treadle, type});
 }
 
@@ -27,7 +27,7 @@ const warpbox = function(thread, treadle, pixel_size) {
   // warps start at (800, 820) & goes left-down
   const type = 'warp'
   const x = drawdown_width - (thread + 1)*pixel_size;
-  const y = drawdown_width + (treadle + 1)*pixel_size;
+  const y = drawdown_height + (treadle + 1)*pixel_size;
   return box(x, y, pixel_size, {thread, treadle, type});
 }
 
@@ -35,14 +35,14 @@ const weftbox = function(thread, treadle, pixel_size) {
   // wefts start at (820, 800) & goes right-up
   const type = 'weft'
   const x = drawdown_width + (thread + 1)*pixel_size;
-  const y = drawdown_width - (treadle + 1)*pixel_size;
+  const y = drawdown_height - (treadle + 1)*pixel_size;
   return box(x, y, pixel_size, {thread, treadle, type});
 }
 
 const tieupbox = function(thread, treadle, pixel_size) {
   const type = 'tieup'
   const x = drawdown_width + (thread + 1)*pixel_size;
-  const y = drawdown_width + (treadle + 1)*pixel_size;
+  const y = drawdown_height + (treadle + 1)*pixel_size;
   return box(x, y, pixel_size, {thread, treadle, type});
 }
 
