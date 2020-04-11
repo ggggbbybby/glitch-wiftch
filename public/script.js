@@ -1,5 +1,5 @@
 const drawdown = document.getElementById("drawdown");
-const drawdown_width = 800;
+let drawdown_width;
 
 const [pixel_size, warp_thread_count, weft_thread_count, shaft_count, treadle_count] = ["pixel-size", "warp-threads", "weft-threads", "shafts", "treadles"].map((id) => document.getElementById(id));
 
@@ -84,6 +84,30 @@ const getState = function() {
   }
 }
 
+
+const readState = function(draft) {
+  return {
+    pixel_size: 12,
+    warps: draft.warp.length * 2,
+    wefts: draft.weft.length * 2,
+    shafts: Math.max(...draft.warp),
+    treadles: draft.tieup.length;
+  }
+}
+
+const setState = function(state) {
+  const default_pixel_size = 12;
+  pixel_size.value = default_pixel_size;
+  const warps = draft.warp.length * 2;
+  warp_thread_count.value = warps;
+  const wefts = draft.weft.length * 2;
+  weft_thread_count.value = wefts;
+  shaft_count.value = Math.max(...draft.warp);
+  treadle_count.value = draft.tieup.length;
+  
+  drawdown_width = default_pixel_size * (warps )
+}
+
 const redrawGrid = function() {
   clearGrid(drawdown);
   drawGrid(drawdown, getState());
@@ -95,6 +119,8 @@ warp_thread_count.addEventListener('change', () => redrawGrid());
 weft_thread_count.addEventListener('change', () => redrawGrid());
 shaft_count.addEventListener('change', () => redrawGrid());
 treadle_count.addEventListener('change', () => redrawGrid());
+
+setState(readState(draft));
 
 drawGrid(drawdown, getState());
 drawDraft(drawdown, draft);
