@@ -16,7 +16,7 @@ const box = function(x, y, pixel_size, data={}) {
 }
 
 const threadbox = function(thread, treadle, pixel_size) {
-  // threads start at (800, 800) & goes left-up
+  // threads start at down-right & goes left-up
   const type = 'drawdown'
   const x = drawdown_width - (thread + 1)*pixel_size;
   const y = drawdown_width - (treadle + 1)*pixel_size;
@@ -49,8 +49,8 @@ const tieupbox = function(thread, treadle, pixel_size) {
 const drawGrid = function(svg, options) {
   const {pixel_size, warps, wefts, shafts, treadles} = options;
   const rect = svg.getBoundingClientRect();
-  drawdown_width = rect.width;
-  drawdown_height = rect.height;
+  drawdown_width = pixel_size * warps;
+  drawdown_height = pixel_size * wefts;
   for (let i = 0; i < warps + treadles + 1; i++) {
     for (let j = 0; j < wefts + shafts + 1; j++) {
       // when i == width or j == height, make a gap for readability
