@@ -34,6 +34,10 @@ drawdown.addEventListener('click', (click) => {
   const cursorpt = pt.matrixTransform(drawdown.getScreenCTM().inverse());
   const {x, y} = cursorpt;
   
+  const {pixel_size, warps, wefts, shafts, treadles} = getState();
+  const drawdown_width = warps * pixel_size;
+  const drawdown_height = wefts * pixel_size;
+  
   const col_type = x < drawdown.width ? 'warp' : (x > drawdown.width ? 'treadle' : 'gap');
   const row_type = y < drawdown.height ? 'weft' : (y > drawdown.height ? 'shaft' : 'gap');
   
