@@ -1,5 +1,4 @@
 const drawdown = document.getElementById("drawdown");
-let drawdown_width;
 
 const [pixel_size, warp_thread_count, weft_thread_count, shaft_count, treadle_count] = ["pixel-size", "warp-threads", "weft-threads", "shafts", "treadles"].map((id) => document.getElementById(id));
 
@@ -35,16 +34,16 @@ drawdown.addEventListener('click', (click) => {
   const cursorpt = pt.matrixTransform(drawdown.getScreenCTM().inverse());
   const {x, y} = cursorpt;
   
-  const col_type = x < drawdown_width ? 'warp' : (x > drawdown_width ? 'treadle' : 'gap');
-  const row_type = y < drawdown_width ? 'weft' : (y > drawdown_width ? 'shaft' : 'gap');
+  const col_type = x < drawdown.width ? 'warp' : (x > drawdown.width ? 'treadle' : 'gap');
+  const row_type = y < drawdown.height ? 'weft' : (y > drawdown.height ? 'shaft' : 'gap');
   
   let col;
   switch (col_type) {
     case 'warp':
-      col = drawdown_width - x;
+      col = drawdown.width - x;
       break;
     case 'treadle':
-      col = x - drawdown_width - pixel_width;
+      col = x - drawdown.width - pixel_width;
       break;
   }
   col = Math.floor(col / pixel_width)
@@ -52,15 +51,15 @@ drawdown.addEventListener('click', (click) => {
   let row;
   switch (row_type) {
     case 'weft':
-      row = drawdown_width - y;
+      row = drawdown.height - y;
       break;
     case 'shaft':
-      row = y - drawdown_width - pixel_width;
+      row = y - drawdown.height - pixel_width;
       break;
   }
   row = Math.floor(row / pixel_width);
   
-  //console.log(`you clicked on ${col_type}-${row_type} @ ${col},${row}`);
+  console.log(`you clicked on ${col_type}-${row_type} @ ${col},${row}`);
   
   if (col_type == 'warp' && row_type == 'shaft') draft.warp[col%draft.warp.length] = row + 1
   if (col_type == 'treadle' && row_type == 'weft') draft.weft[row%draft.weft.length] = col + 1;
@@ -104,10 +103,10 @@ const setState = function(state) {
   shaft_count.value = state.shafts;
   treadle_count.value = state.treadles;
   
-  drawdown_width = state.pixel_size * (state.warps + state.treadles + 1)
-  drawdown_height = state.pixel_size * (state.wefts + state.shafts + 1)
-  drawdown.height = drawdown_height;
-  drawdown.width = drawdown_width;
+  const drawdown_width = state.pixel_size * (state.warps + state.treadles + 1)
+  const drawdown_height = state.pixel_size * (state.wefts + state.shafts + 1)
+  drawdown.setAttribute('height', drawdown_height);
+  drawdown.setAttribute('width', drawdown_width);
 }
 
 const redrawGrid = function() {

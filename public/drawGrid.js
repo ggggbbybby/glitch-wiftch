@@ -1,3 +1,4 @@
+let drawdown_width, drawdown_height;
 
 const box = function(x, y, pixel_size, data={}) {
   let box = document.createElementNS("http://www.w3.org/2000/svg", "rect");
@@ -47,6 +48,9 @@ const tieupbox = function(thread, treadle, pixel_size) {
 
 const drawGrid = function(svg, options) {
   const {pixel_size, warps, wefts, shafts, treadles} = options;
+  const rect = svg.getBoundingClientRect();
+  drawdown_width = rect.width;
+  drawdown_height = rect.height;
   for (let i = 0; i < warps + treadles + 1; i++) {
     for (let j = 0; j < wefts + shafts + 1; j++) {
       // when i == width or j == height, make a gap for readability
