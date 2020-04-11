@@ -7,10 +7,14 @@ const pixel_width = parseInt(pixel_size.value);
 
 let draft = {
   shaft_count: 4,
-  treadle_count: 6,
-  warp: [1, 4, 2, 1, 3, 2, 4, 3, 1, 4, 2, 1, 3, 2, 4, 2, 3, 1, 2, 4, 1, 3, 4, 2, 3, 1, 2, 4, 1, 4, 2, 1, 3, 2, 4, 3, 1, 4, 2, 1, 3, 2, 4, 2, 3, 1, 2, 4, 1, 3, 4, 2, 3, 1, 2, 4],
-  weft: [1, 5, 2, 6, 1, 3, 2, 4, 1, 5, 2, 6, 1, 3, 2, 4, 1, 5, 2, 6, 1, 6, 2, 5, 1, 4, 2, 3, 1, 6, 2, 5, 1, 4, 2, 3, 1, 6, 2, 5],
-  tieup: [[1, 3], [2, 4], [1, 2], [2, 3], [3, 4], [1, 4]]
+  treadle_count: 4,
+  warp: [1, 2, 3, 4],
+  weft: [1, 2, 3, 4],
+  //treadle_count: 6,
+  //warp: [1, 4, 2, 1, 3, 2, 4, 3, 1, 4, 2, 1, 3, 2, 4, 2, 3, 1, 2, 4, 1, 3, 4, 2, 3, 1, 2, 4, 1, 4, 2, 1, 3, 2, 4, 3, 1, 4, 2, 1, 3, 2, 4, 2, 3, 1, 2, 4, 1, 3, 4, 2, 3, 1, 2, 4],
+  //weft: [1, 5, 2, 6, 1, 3, 2, 4, 1, 5, 2, 6, 1, 3, 2, 4, 1, 5, 2, 6, 1, 6, 2, 5, 1, 4, 2, 3, 1, 6, 2, 5, 1, 4, 2, 3, 1, 6, 2, 5],
+  //tieup: [[1, 3], [2, 4], [1, 2], [2, 3], [3, 4], [1, 4]]
+  tieup: [[1], [2], [3], [4]]
 };
 
 
@@ -86,11 +90,11 @@ const redrawGrid = function() {
   drawDraft(drawdown, draft);
 }
 
-pixel_size.addEventListener('input', () => redrawGrid());
-warp_thread_count.addEventListener('input', () => redrawGrid());
-weft_thread_count.addEventListener('input', () => redrawGrid());
-shaft_count.addEventListener('input', () => redrawGrid());
-treadle_count.addEventListener('input', () => redrawGrid());
+pixel_size.addEventListener('change', () => redrawGrid());
+warp_thread_count.addEventListener('change', () => redrawGrid());
+weft_thread_count.addEventListener('change', () => redrawGrid());
+shaft_count.addEventListener('change', () => redrawGrid());
+treadle_count.addEventListener('change', () => redrawGrid());
 
 drawGrid(drawdown, getState());
 drawDraft(drawdown, draft);

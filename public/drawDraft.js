@@ -5,7 +5,7 @@ const drawDraft = function(svg, draft) {
     let row = j % draft.weft.length;
     let treadle = draft.weft[row];
     let shafts_down = draft.tieup[treadle - 1];
-    if (!shafts_down) debugger;
+    // (!shafts_down) debugger;
     let shaft = draft.warp[col];
     return shafts_down.includes(shaft);
   };
@@ -17,7 +17,7 @@ const drawDraft = function(svg, draft) {
   const fill_tieup = function(i, j) {
     let treadle = i % draft.treadle_count;
     let shaft = (j % draft.shaft_count) + 1;
-    if (!draft.tieup[treadle]) debugger;
+    // (!draft.tieup[treadle]) debugger;
     return draft.tieup[treadle].includes(shaft);
   };
 

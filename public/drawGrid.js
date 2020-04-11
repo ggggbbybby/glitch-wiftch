@@ -22,7 +22,7 @@ const threadbox = function(thread, treadle, pixel_size) {
   return box(x, y, pixel_size, {thread, treadle, type});
 }
 
-const warpbox = function(thread, treadle, pixel_width) {
+const warpbox = function(thread, treadle, pixel_size) {
   // warps start at (800, 820) & goes left-down
   const type = 'warp'
   const x = drawdown_width - (thread + 1)*pixel_size;
