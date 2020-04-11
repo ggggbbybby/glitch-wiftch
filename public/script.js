@@ -64,8 +64,14 @@ drawdown.addEventListener('click', (click) => {
   row = Math.floor(row / pixel_size);
   
   console.log(`you clicked on ${col_type}-${row_type} @ ${col},${row}`);
+  // add repeats to draft so that our click isn't out of bounds
+  const single_warp_repeat = draft.warp.slice();
+  while (col > draft.warp.length) draft.warp = draft.warp.concat(single_warp_repeat);
+  const single_weft_repeat = draft.weft.slice();
+  while (row > draft.weft.length) draft.weft = draft.weft.concat(single_weft_repeat);
   
-  if (col_type == 'warp' && row_type == 'shaft') draft.warp[col%draft.warp.length] = row + 1
+  if (col_type == 'warp' && row_type == 'shaft')
+draft.warp[col] = row + 1
   if (col_type == 'treadle' && row_type == 'weft') draft.weft[row%draft.weft.length] = col + 1;
   if (col_type == 'treadle' && row_type == 'shaft') draft.tieup[col] = toggle_shaft(draft.tieup[col], row + 1);
   drawDraft(drawdown, draft);
@@ -132,6 +138,7 @@ treadle_count.addEventListener('change', () => redrawGrid());
 
 const initialState = readState(draft);
 setState(initialState);
+setSize(initialState);
 drawGrid(drawdown, getState());
 drawDraft(drawdown, draft);
 generateWIF(draft);
