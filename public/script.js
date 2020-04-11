@@ -20,7 +20,9 @@ let draft = {
 
 const pt = drawdown.createSVGPoint();
 const toggle_shaft = (shafts, shaft) => {
-  if (shafts.includes(shaft)) {
+  if (!shafts) {
+    return [shaft];
+  } else if (shafts.includes(shaft)) {
     return shafts.filter((s) => s != shaft);
   } else {
     return [shaft, ...shafts];
@@ -91,21 +93,21 @@ const readState = function(draft) {
     warps: draft.warp.length * 2,
     wefts: draft.weft.length * 2,
     shafts: Math.max(...draft.warp),
-    treadles: draft.tieup.length;
+    treadles: draft.tieup.length,
   }
 }
 
 const setState = function(state) {
-  const default_pixel_size = 12;
-  pixel_size.value = default_pixel_size;
-  const warps = draft.warp.length * 2;
-  warp_thread_count.value = warps;
-  const wefts = draft.weft.length * 2;
-  weft_thread_count.value = wefts;
-  shaft_count.value = Math.max(...draft.warp);
-  treadle_count.value = draft.tieup.length;
+  pixel_size.value = state.pixel_size;
+  warp_thread_count.value = state.warps;
+  weft_thread_count.value = state.wefts;
+  shaft_count.value = state.shafts;
+  treadle_count.value = state.treadles;
   
-  drawdown_width = default_pixel_size * (warps )
+  drawdown_width = state.pixel_size * (state.warps + state.treadles + 1)
+  drawdown_height = state.pixel_size * (state.wefts + state.shafts + 1)
+  drawdown.height = drawdown_height;
+  drawdown.width = drawdown_width;
 }
 
 const redrawGrid = function() {
