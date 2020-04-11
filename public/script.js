@@ -102,7 +102,9 @@ const setState = function(state) {
   weft_thread_count.value = state.wefts;
   shaft_count.value = state.shafts;
   treadle_count.value = state.treadles;
-  
+}
+
+const setSize = function(state) {
   const drawdown_width = state.pixel_size * (state.warps + state.treadles + 1)
   const drawdown_height = state.pixel_size * (state.wefts + state.shafts + 1)
   drawdown.setAttribute('height', drawdown_height);
@@ -113,11 +115,8 @@ const redrawGrid = function() {
   const state = getState();
   clearGrid(drawdown);
   
+  setSize(state);
   drawGrid(drawdown, state);
-  const drawdown_width = state.pixel_size * (state.warps + state.treadles + 1)
-  const drawdown_height = state.pixel_size * (state.wefts + state.shafts + 1)
-  drawdown.setAttribute('height', drawdown_height);
-  drawdown.setAttribute('width', drawdown_width);
   drawDraft(drawdown, draft);
 }
 
@@ -127,8 +126,8 @@ weft_thread_count.addEventListener('change', () => redrawGrid());
 shaft_count.addEventListener('change', () => redrawGrid());
 treadle_count.addEventListener('change', () => redrawGrid());
 
-setState(readState(draft));
-
+const initialState = readState(draft);
+setState(initialState);
 drawGrid(drawdown, getState());
 drawDraft(drawdown, draft);
 generateWIF(draft);
