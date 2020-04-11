@@ -70,9 +70,8 @@ drawdown.addEventListener('click', (click) => {
   const single_weft_repeat = draft.weft.slice();
   while (row > draft.weft.length) draft.weft = draft.weft.concat(single_weft_repeat);
   
-  if (col_type == 'warp' && row_type == 'shaft')
-draft.warp[col] = row + 1
-  if (col_type == 'treadle' && row_type == 'weft') draft.weft[row%draft.weft.length] = col + 1;
+  if (col_type == 'warp' && row_type == 'shaft') draft.warp[col] = row + 1
+  if (col_type == 'treadle' && row_type == 'weft') draft.weft[row] = col + 1;
   if (col_type == 'treadle' && row_type == 'shaft') draft.tieup[col] = toggle_shaft(draft.tieup[col], row + 1);
   drawDraft(drawdown, draft);
   generateWIF(draft);
