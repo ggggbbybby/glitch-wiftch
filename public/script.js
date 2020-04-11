@@ -38,30 +38,30 @@ drawdown.addEventListener('click', (click) => {
   const drawdown_width = warps * pixel_size;
   const drawdown_height = wefts * pixel_size;
   
-  const col_type = x < drawdown.width ? 'warp' : (x > drawdown.width ? 'treadle' : 'gap');
-  const row_type = y < drawdown.height ? 'weft' : (y > drawdown.height ? 'shaft' : 'gap');
+  const col_type = x < drawdown_width ? 'warp' : (x > drawdown_width ? 'treadle' : 'gap');
+  const row_type = y < drawdown_height ? 'weft' : (y > drawdown_height ? 'shaft' : 'gap');
   
   let col;
   switch (col_type) {
     case 'warp':
-      col = drawdown.width - x;
+      col = drawdown_width - x;
       break;
     case 'treadle':
-      col = x - drawdown.width - pixel_width;
+      col = x - drawdown_width - pixel_size;
       break;
   }
-  col = Math.floor(col / pixel_width)
+  col = Math.floor(col / pixel_size)
   
   let row;
   switch (row_type) {
     case 'weft':
-      row = drawdown.height - y;
+      row = drawdown_height - y;
       break;
     case 'shaft':
-      row = y - drawdown.height - pixel_width;
+      row = y - drawdown_height - pixel_size;
       break;
   }
-  row = Math.floor(row / pixel_width);
+  row = Math.floor(row / pixel_size);
   
   console.log(`you clicked on ${col_type}-${row_type} @ ${col},${row}`);
   
