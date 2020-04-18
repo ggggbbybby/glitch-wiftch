@@ -15,14 +15,14 @@ const drawDraft = function(svg, draft) {
   };
 
   const fill_tieup = function(i, j) {
-    let treadle = i % draft.treadle_count;
-    let shaft = (j % draft.shaft_count) + 1;
+    let treadle = i;
+    let shaft = j  + 1;
     // (!draft.tieup[treadle]) debugger;
     return draft.tieup[treadle].includes(shaft);
   };
 
   const fill_treadling = function(i, j) {
-    let treadle = (i % draft.treadle_count) + 1;
+    let treadle = i + 1;
     let row = j % draft.weft.length;
     return draft.weft[row] == treadle;
   };
