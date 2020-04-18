@@ -48,7 +48,6 @@ const tieupbox = function(thread, treadle, pixel_size) {
 
 const drawGrid = function(svg, options) {
   const {pixel_size, warps, wefts, shafts, treadles} = options;
-  const rect = svg.getBoundingClientRect();
   drawdown_width = pixel_size * warps;
   drawdown_height = pixel_size * wefts;
   for (let i = 0; i < warps + treadles + 1; i++) {
@@ -56,14 +55,14 @@ const drawGrid = function(svg, options) {
       // when i == width or j == height, make a gap for readability
       const col_type = i < warps ? 'thread' : (i > warps ? 'treadle' : 'gap');
       const row_type = j < wefts ? 'thread' : (j > wefts ? 'shaft' : 'gap');
-      console.log("Drawing ", i, j, "as", col_type, row_type)
+      if (col_type == 'treadle' || row_type == 'shaft') console.log("Drawing ", i, j, "as", col_type, row_type)
       
       let box = null;
       if (col_type == 'gap' || row_type == 'gap') box = null;
       else if (col_type == 'thread' && row_type == 'thread') box = threadbox(i, j, pixel_size);
-      else if (col_type == 'thread' && row_type == 'shaft') box = warpbox(i, j%wefts - 1, pixel_size);
+      else if (col_type == 'thread' && row_type == 'shaft') box = warpbox(i, j%wefts, pixel_size);
       else if (col_type == 'treadle' && row_type == 'thread') box = weftbox(i%warps, j, pixel_size);
-      else if (col_type == 'treadle' && row_type == 'shaft') box = tieupbox(i%warps - 1, j%wefts - 1, pixel_size);
+      else if (col_type == 'treadle' && row_type == 'shaft') box = tieupbox(i%warps, j%wefts, pixel_size);
       else box = null;
       
       if (box) svg.appendChild(box);

@@ -98,8 +98,8 @@ const getState = function() {
 const readState = function(draft) {
   return {
     pixel_size: 12,
-    warps: draft.warp.length * 2,
-    wefts: draft.weft.length * 2,
+    warps: draft.warp.length ,
+    wefts: draft.weft.length ,
     shafts: Math.max(...draft.warp),
     treadles: draft.tieup.length,
   }
