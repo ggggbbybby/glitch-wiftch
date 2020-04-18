@@ -17,7 +17,7 @@ const drawDraft = function(svg, draft) {
   const fill_tieup = function(i, j) {
     let treadle = i;
     let shaft = j  + 1;
-    // (!draft.tieup[treadle]) debugger;
+    if (!draft.tieup[treadle]) return false;
     return draft.tieup[treadle].includes(shaft);
   };
 
