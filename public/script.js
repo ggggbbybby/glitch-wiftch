@@ -127,6 +127,7 @@ const redrawGrid = function() {
   setSize(state);
   drawGrid(drawdown, state);
   drawDraft(drawdown, draft);
+  generateWIF(draft);
 }
 
 pixel_size.addEventListener('change', () => redrawGrid());

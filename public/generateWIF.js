@@ -1,9 +1,11 @@
 const threading_sequence = function(draft) {
-  return draft.warp.map((shaft, index) => `${index + 1}=${shaft}`);
+  const length = document.getElementById("warp-threads").value;
+  return draft.warp.slice(0, length).map((shaft, index) => `${index + 1}=${shaft}`);
 };
 
 const tieup_sequence = function(draft) {
-  return draft.tieup.map(
+  const length = document.getElementById("weft-threads").value;
+  return draft.tieup.slice(0, length).map(
     (shafts, index) => `${index + 1}=${shafts.join(",")}`
   );
 };
@@ -15,7 +17,6 @@ const treadling_sequence = function(draft) {
 const generateWIF = function(draft) {
   const today = new Date().toDateString();
   const title = document.getElementsByTagName("h1")[0].textContent;
-  const visible_warps = document.getElementById("#warp-threads").value;
   const wif = [
     "",
     "[WIF]",
