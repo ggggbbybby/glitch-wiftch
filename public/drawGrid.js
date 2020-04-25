@@ -46,9 +46,15 @@ const tieupbox = function(thread, treadle, pixel_size) {
   return box(x, y, pixel_size, {thread, treadle, type});
 }
 
-const colorbox = function(col, row, pixel_size) {
+const weftcolorbox = function(col, row, pixel_size) {
   const type = 'weft-color'
-  const x = drawdown_width + (col) * pixel_size
+  const x = drawdown_width + (col * pixel_size);
+  const y = drawdown_height + row * pixel_size;
+  return box(x, y, pixel_size, {col, row})
+}
+
+const warpcolorbox = function(col, row, pixel_size) {
+  return null;
 }
 
 const dimtype = function(dim, ranges) {
@@ -68,16 +74,18 @@ const drawGrid = function(svg, options) {
   drawdown_height = pixel_size * wefts;
   for (let i = 0; i < warps + treadles + 3; i++) {
     for (let j = 0; j < wefts + shafts + 3; j++) {
-      const col_type = dimtype(i, {0: "thread", [warps]: "gap", [warps + 1]: "treadle", [warps + treadles]: "gap", [warps + treadle + 1]: "color"})
-      const row_type = dimtype(j, {0: "thread", [wefts]: "gap", [wefts + 1]: "shaft", [wefts + shafts]: "gap", [wefts + shafts + 1]: "color"})
+      const col_type = dimtype(i, {0: "thread", [warps]: "gap", [warps + 1]: "treadle", [warps + treadles + 1]: "gap", [warps + treadles + 2]: "color"})
+      const row_type = dimtype(j, {0: "thread", [wefts]: "gap", [wefts + 1]: "shaft", [wefts + shafts + 1]: "gap", [wefts + shafts + 2]: "color"})
       
       //const col_type = i < warps ? 'thread' : (i > warps ? 'treadle' : 'gap');
       //const row_type = j < wefts ? 'thread' : (j > wefts ? 'shaft' : 'gap');
       if (col_type == 'gap') console.log("gap at i=", i)
+      if (col_type == 'color') console.log("color at i=", i);
       
       let box = null;
       if (col_type == 'gap' || row_type == 'gap') box = null;
-      if (col_type == 'color' && row_type == 'thread')
+      else if (col_type == 'color' && row_type == 'thread') box = weftcolorbox(i, j, pixel_size);
+      //else if (col_type == 'thread' && row_type == 'color') box = warpcolorbox(i, j, pixel_size);
       else if (col_type == 'thread' && row_type == 'thread') box = threadbox(i, j, pixel_size);
       else if (col_type == 'thread' && row_type == 'shaft') box = warpbox(i,(j - wefts - 1), pixel_size);
       else if (col_type == 'treadle' && row_type == 'thread') box = weftbox((i - warps - 1), j, pixel_size); // 0 -> treadles
