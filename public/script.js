@@ -66,9 +66,12 @@ drawdown.addEventListener('click', (click) => {
   row = Math.floor(row / pixel_size);
   
   console.log(`you clicked on ${col_type}-${row_type} @ ${col},${row}`);
-  // add repeats to draft so that our click isn't out of bounds
-  const single_warp_repeat = draft.warp.slice();
-  while (col > draft.warp.length) draft.warp = draft.warp.concat(single_warp_repeat);
+  // add extra threads to draft so that our click isn't out of bounds
+  const single_warp_repeat = [...Array()]
+  
+  while (col > draft.warp.length) {
+    draft.warp = draft.warp.concat(single_warp_repeat);
+  }
   const single_weft_repeat = draft.weft.slice();
   while (row > draft.weft.length) draft.weft = draft.weft.concat(single_weft_repeat);
   
