@@ -46,16 +46,29 @@ const tieupbox = function(thread, treadle, pixel_size) {
   return box(x, y, pixel_size, {thread, treadle, type});
 }
 
+const colorbox = function(col, row, pixel_size) {
+  const type = 'weft-color'
+  const x = drawdown_width + (col) * pixel_size
+}
+
 const drawGrid = function(svg, options) {
   console.log(options)
   const {pixel_size, warps, wefts, shafts, treadles} = options;
   drawdown_width = pixel_size * warps;
   drawdown_height = pixel_size * wefts;
-  for (let i = 0; i < warps + treadles + 1; i++) {
-    for (let j = 0; j < wefts + shafts + 1; j++) {
+  for (let i = 0; i < warps + treadles + 3; i++) {
+    for (let j = 0; j < wefts + shafts + 3; j++) {
       // when i == width or j == height, make a gap for readability
-      const col_type = i < warps ? 'thread' : (i > warps ? 'treadle' : 'gap');
-      const row_type = j < wefts ? 'thread' : (j > wefts ? 'shaft' : 'gap');
+      let col_type, row_type;
+      
+      
+      if (i < warps) {
+        col_type = 'thread'
+      } else if (i == warps) {
+        col_type = 'gap'
+      } else if (i > warps && i < warps + treadles)
+      //const col_type = i < warps ? 'thread' : (i > warps ? 'treadle' : 'gap');
+      //const row_type = j < wefts ? 'thread' : (j > wefts ? 'shaft' : 'gap');
       if (col_type == 'gap') console.log("gap at i=", i)
       
       let box = null;
