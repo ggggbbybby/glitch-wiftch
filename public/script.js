@@ -40,7 +40,7 @@ drawdown.addEventListener('click', (click) => {
   const drawdown_width = warps * pixel_size;
   const drawdown_height = wefts * pixel_size;
   
-  const col_type = x < drawdown_width ? 'warp' : (x > drawdown_width ? 'treadle' : 'gap');
+  const col_type = x < drawdown_width ? 'warp' : (x == drawdown_width ? 'gap' : 'treadle');
   const row_type = y < drawdown_height ? 'weft' : (y > drawdown_height ? 'shaft' : 'gap');
   
   let col;
