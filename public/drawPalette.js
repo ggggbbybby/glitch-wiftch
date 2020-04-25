@@ -328,7 +328,7 @@ const colors = [
   },
   {
     "color": "2070",
-    "name": "pastel_blue_gray",
+    "name": "pastel blue gray",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2070.jpg"
   },
   {
@@ -353,12 +353,12 @@ const colors = [
   },
   {
     "color": "2075",
-    "name": "light_peach",
+    "name": "light peach",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2075.jpg"
   },
   {
     "color": "2076",
-    "name": "light_aqua",
+    "name": "light aqua",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2076.jpg"
   },
   {
@@ -368,12 +368,20 @@ const colors = [
   }
 ]
 
+/*
+            <defs>
+              <pattern id="sample" width="50" height="50">
+                <image xlink:href="https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2000.jpg"></image>
+              </pattern>
+            </defs>
+            <rect width="50" height="50" fill="url(#sample)"></rect>
+*/
 const backgroundPattern = function(color) {
   let pattern = document.createElementNS("http://www.w3.org/2000/svg", "pattern");
-  pattern.setAttribute('id', color.name);
+  pattern.setAttribute('id', color.name.replace(/\s+/g, '_'));
   pattern.setAttribute("width", swatch_size);
   pattern.setAttribute("height", swatch_size);
-  let bg_image = document.createElementNS("http://www.w3.org/2000/svg", "image");
+  let bg_image = document.createElement("image");
   bg_image.setAttribute("xlink:href", color.url)
   pattern.appendChild(bg_image);
   return pattern;
@@ -384,7 +392,7 @@ const swatch = function(color, coords) {
   box.setAttribute("width", swatch_size);
   box.style.stroke = "#333";
   box.style.strokeWidth = "2px";
-  box.setAttribute("fill", `url(#${color.name})`);
+  box.setAttribute("fill", `url(#${color.name.replace(/\s+/g, '_')})`);
   box.setAttribute("x", coords.x);
   box.setAttribute("y", coords.y);
   return box;
