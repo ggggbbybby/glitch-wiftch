@@ -11,7 +11,8 @@ const tieup_sequence = function(draft) {
 };
 
 const treadling_sequence = function(draft) {
-  return draft.weft.map((treadle, index) => `${index + 1}=${treadle}`);
+  const length = document.getElementById("weft-threads").value;
+  return draft.weft.slice(0, length).map((treadle, index) => `${index + 1}=${treadle}`);
 };
 
 const generateWIF = function(draft) {
@@ -57,14 +58,14 @@ const generateWIF = function(draft) {
     "[WARP]",
     "Units=centimeters",
     "Color=1",
-    `Threads=${draft.warp.length}`,
+    `Threads=${document.getElementById("warp-threads").value}`,
     "Spacing=0.2117",
     "Thickness=0.2117",
     "",
     "[WEFT]",
     "Units=centimeters",
     "Color=2",
-    `Threads=${draft.weft.length}`,
+    `Threads=${document.getElementById("weft-threads").value}`,
     "Spacing=0.2117",
     "Thickness=0.2117",
     "",
