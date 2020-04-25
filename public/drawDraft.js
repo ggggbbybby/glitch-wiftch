@@ -27,13 +27,21 @@ const drawDraft = function(svg, draft) {
     return draft.weft[row] == treadle;
   };
   
+  const fill_weftcolor = function(i, j) {
+    return draft.weft_colors[i % draft.weft_colors.length];
+  }
+  
+  const fill_warpcolor = function(i, j) {
+    return draft.warp_colors[j % draft.warp_colors.length];
+  }
+  
   svg.querySelectorAll('rect').forEach((child) => {
     let fill = false;
     const col = parseInt(child.dataset.thread);
     const row = parseInt(child.dataset.treadle);
     switch (child.dataset.type) {
       case 'drawdown':
-        fill = fill_drawdown(col, row) ? "#f00" : "#fff";
+        fill = fill_drawdown(col, row) ? fill_weftcolor(col, row) : fill_warpcolor(col, row);
         break;
       case 'warp':
         fill = fill_threading(col, row) ? "#000" : "#fff";
@@ -43,6 +51,12 @@ const drawDraft = function(svg, draft) {
         break;
       case 'tieup':
         fill = fill_tieup(col, row) ? "#000" : "#fff";
+        break;
+      case 'weft-color':
+        fill = fill_weftcolor(col, row)
+        break;
+      case 'warp-color':
+        fill = '#000'
         break;
     }
     child.setAttribute('fill', fill);

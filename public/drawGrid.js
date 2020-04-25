@@ -48,9 +48,9 @@ const tieupbox = function(thread, treadle, pixel_size) {
 
 const weftcolorbox = function(col, row, pixel_size) {
   const type = 'weft-color'
-  const x = drawdown_width + (col * pixel_size);
-  const y = drawdown_height + row * pixel_size;
-  return box(x, y, pixel_size, {col, row})
+  const x = (col * pixel_size);
+  const y = row * pixel_size;
+  return box(x, y, pixel_size, {thread: row, treadle: col, type})
 }
 
 const warpcolorbox = function(col, row, pixel_size) {

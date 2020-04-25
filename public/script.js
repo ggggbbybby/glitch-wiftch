@@ -9,6 +9,8 @@ let draft = {
   treadle_count: 4,
   warp: [1, 2, 3, 4],
   weft: [1, 2, 3, 4],
+  weft_colors: ["#f00"],
+  warp_colors: ["#fff"],
   //treadle_count: 6,
   //warp: [1, 4, 2, 1, 3, 2, 4, 3, 1, 4, 2, 1, 3, 2, 4, 2, 3, 1, 2, 4, 1, 3, 4, 2, 3, 1, 2, 4, 1, 4, 2, 1, 3, 2, 4, 3, 1, 4, 2, 1, 3, 2, 4, 2, 3, 1, 2, 4, 1, 3, 4, 2, 3, 1, 2, 4],
   //weft: [1, 5, 2, 6, 1, 3, 2, 4, 1, 5, 2, 6, 1, 3, 2, 4, 1, 5, 2, 6, 1, 6, 2, 5, 1, 4, 2, 3, 1, 6, 2, 5, 1, 4, 2, 3, 1, 6, 2, 5],
@@ -114,8 +116,8 @@ const setState = function(state) {
 }
 
 const setSize = function(state) {
-  const drawdown_width = state.pixel_size * (state.warps + state.treadles + 1)
-  const drawdown_height = state.pixel_size * (state.wefts + state.shafts + 1)
+  const drawdown_width = state.pixel_size * (state.warps + state.treadles + 3)
+  const drawdown_height = state.pixel_size * (state.wefts + state.shafts + 3)
   drawdown.setAttribute('height', drawdown_height);
   drawdown.setAttribute('width', drawdown_width);
 }
