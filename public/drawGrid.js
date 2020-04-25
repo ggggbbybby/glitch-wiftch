@@ -54,7 +54,10 @@ const weftcolorbox = function(col, row, pixel_size) {
 }
 
 const warpcolorbox = function(col, row, pixel_size) {
-  return null;
+  const type = 'warp-color'
+  const x = col * pixel_size;
+  const y = row * pixel_size;
+  return box(x, y, pixel_size, {thread: row, treadle: col, type})
 }
 
 const dimtype = function(dim, ranges) {
@@ -68,7 +71,7 @@ const dimtype = function(dim, ranges) {
 }
 
 const drawGrid = function(svg, options) {
-  console.log(options)
+  // console.log(options)
   const {pixel_size, warps, wefts, shafts, treadles} = options;
   drawdown_width = pixel_size * warps;
   drawdown_height = pixel_size * wefts;
@@ -85,7 +88,7 @@ const drawGrid = function(svg, options) {
       let box = null;
       if (col_type == 'gap' || row_type == 'gap') box = null;
       else if (col_type == 'color' && row_type == 'thread') box = weftcolorbox(i, j, pixel_size);
-      //else if (col_type == 'thread' && row_type == 'color') box = warpcolorbox(i, j, pixel_size);
+      else if (col_type == 'thread' && row_type == 'color') box = warpcolorbox(i, j, pixel_size);
       else if (col_type == 'thread' && row_type == 'thread') box = threadbox(i, j, pixel_size);
       else if (col_type == 'thread' && row_type == 'shaft') box = warpbox(i,(j - wefts - 1), pixel_size);
       else if (col_type == 'treadle' && row_type == 'thread') box = weftbox((i - warps - 1), j, pixel_size); // 0 -> treadles

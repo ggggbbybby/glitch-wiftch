@@ -1,4 +1,5 @@
 const drawdown = document.getElementById("drawdown");
+const palette = document.getElementById("palette");
 
 const [pixel_size, warp_thread_count, weft_thread_count, shaft_count, treadle_count] = ["pixel-size", "warp-threads", "weft-threads", "shafts", "treadles"].map((id) => document.getElementById(id));
 
@@ -30,7 +31,7 @@ const toggle_shaft = (shafts, shaft) => {
   }
 }
 
-const dimtype(dim, ranges) {
+const onclick_dimtype = function(dim, ranges) {
   let result;
   for (rangeStart in ranges) {
     if (dim > rangeStart) result = ranges[rangeStart]
@@ -48,10 +49,8 @@ drawdown.addEventListener('click', (click) => {
   const drawdown_width = warps * pixel_size;
   const drawdown_height = wefts * pixel_size;
   
-  const col_type = dimtype(x, {0: 'warp', [drawdown_width]: 'gap', [drawdown_width + pixel_size]: 'treadle', [drawdown_width + pixel_size + (shafts * pixel_size)]: 'gap', [drawdown_width + pixel_size + (shafts * pixel_size) + pixel_size]: 'color'});
-  //const col_type = x < drawdown_width ? 'warp' : (x == drawdown_width ? 'gap' : (x < drawdown_width + ((shafts + 1) * pixel_size)'treadle');
-  const row_type = dimtype(y, {0: 'weft', [drawdown_height]: 'gap', [drawdown_height + pixel_size]: 'shaft'})
-  const row_type = y < drawdown_height ? 'weft' : (y > drawdown_height ? 'shaft' : 'gap');
+  const col_type = onclick_dimtype(x, {0: 'warp', [drawdown_width]: 'gap', [drawdown_width + pixel_size]: 'treadle', [drawdown_width + pixel_size + (treadles * pixel_size)]: 'gap', [drawdown_width + pixel_size + (treadles * pixel_size) + pixel_size]: 'color'});
+  const row_type = onclick_dimtype(y, {0: 'weft', [drawdown_height]: 'gap', [drawdown_height + pixel_size]: 'shaft', [drawdown_height + pixel_size + (shafts * pixel_size)]: 'gap', [drawdown_height + pixel_size + (shafts * pixel_size) + pixel_size]: 'color'});
   
   let col;
   switch (col_type) {
@@ -153,4 +152,5 @@ setState(initialState);
 setSize(initialState);
 drawGrid(drawdown, getState());
 drawDraft(drawdown, draft);
+drawPalette(palette);
 generateWIF(draft);

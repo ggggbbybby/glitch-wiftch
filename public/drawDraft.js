@@ -56,7 +56,7 @@ const drawDraft = function(svg, draft) {
         fill = fill_weftcolor(col, row)
         break;
       case 'warp-color':
-        fill = '#000'
+        fill = fill_warpcolor(col, row)
         break;
     }
     child.setAttribute('fill', fill);
