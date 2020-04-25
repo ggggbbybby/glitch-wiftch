@@ -65,7 +65,7 @@ const generateWIF = function(draft) {
     "[WEFT]",
     "Units=centimeters",
     "Color=2",
-    `Threads=${document.getElementById("weft-threads").value}`,
+    `Threads=${Math.min(document.getElementById("weft-threads").value, draft.warp.length)}`,
     "Spacing=0.2117",
     "Thickness=0.2117",
     "",
