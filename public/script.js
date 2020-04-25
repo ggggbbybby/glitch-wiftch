@@ -30,6 +30,14 @@ const toggle_shaft = (shafts, shaft) => {
   }
 }
 
+const dimtype(dim, ranges) {
+  let result;
+  for (rangeStart in ranges) {
+    if (dim > rangeStart) result = ranges[rangeStart]
+  }
+  return result;
+}
+
 drawdown.addEventListener('click', (click) => {
   pt.x = click.clientX;
   pt.y = click.clientY;
@@ -40,7 +48,9 @@ drawdown.addEventListener('click', (click) => {
   const drawdown_width = warps * pixel_size;
   const drawdown_height = wefts * pixel_size;
   
-  const col_type = x < drawdown_width ? 'warp' : (x == drawdown_width ? 'gap' : 'treadle');
+  const col_type = dimtype(x, {0: 'warp', [drawdown_width]: 'gap', [drawdown_width + pixel_size]: 'treadle', [drawdown_width + pixel_size + (shafts * pixel_size)]: 'gap', [drawdown_width + pixel_size + (shafts * pixel_size) + pixel_size]: 'color'});
+  //const col_type = x < drawdown_width ? 'warp' : (x == drawdown_width ? 'gap' : (x < drawdown_width + ((shafts + 1) * pixel_size)'treadle');
+  const row_type = dimtype(y, {0: 'weft', [drawdown_height]: 'gap', [drawdown_height + pixel_size]: 'shaft'})
   const row_type = y < drawdown_height ? 'weft' : (y > drawdown_height ? 'shaft' : 'gap');
   
   let col;
