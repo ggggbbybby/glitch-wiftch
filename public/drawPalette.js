@@ -351,11 +351,13 @@ const colors = [
     "name": "cyan",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2074.jpg"
   },
+  /* skip one color because I want these to fit in a tidy 6x12 grid
   {
     "color": "2075",
     "name": "light peach",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2075.jpg"
   },
+  */
   {
     "color": "2076",
     "name": "light aqua",
@@ -368,24 +370,6 @@ const colors = [
   }
 ]
 
-/*
-            <defs>
-              <pattern id="sample" width="50" height="50">
-                <image xlink:href="https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2000.jpg"></image>
-              </pattern>
-            </defs>
-            <rect width="50" height="50" fill="url(#sample)"></rect>
-*/
-const backgroundPattern = function(color) {
-  let pattern = document.createElementNS("http://www.w3.org/2000/svg", "pattern");
-  pattern.setAttribute('id', color.name.replace(/\s+/g, '_'));
-  pattern.setAttribute("width", swatch_size);
-  pattern.setAttribute("height", swatch_size);
-  let bg_image = document.createElement("image");
-  bg_image.setAttribute("xlink:href", color.url)
-  pattern.appendChild(bg_image);
-  return pattern;
-}
 const swatch = function(color, coords) {
   let box = document.createElementNS("http://www.w3.org/2000/svg", "rect");
   box.setAttribute("height", swatch_size);
@@ -399,6 +383,11 @@ const swatch = function(color, coords) {
 }
 
 const drawPalette = function(svg) {
+  const palette_width = swatch_size * swatches_per_row;
+  const palette_height = swatch_size * Math.ceil(colors.length / swatches_per_row);
+  svg.setAttribute("width", palette_width);
+  svg.setAttribute("height", palette_height);
+  
   const xy = (index) => {
     return {
       x: swatch_size * (index % swatches_per_row),
@@ -408,7 +397,6 @@ const drawPalette = function(svg) {
   const pattern_defs = svg.querySelector('defs');
   colors.forEach((color, idx) => {
     const coordinates = xy(idx);
-    pattern_defs.appendChild(backgroundPattern(color));
     svg.appendChild(swatch(color, coordinates));
   })
 }
