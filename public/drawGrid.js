@@ -51,6 +51,16 @@ const colorbox = function(col, row, pixel_size) {
   const x = drawdown_width + (col) * pixel_size
 }
 
+const dimtype = function(dim, ranges) {
+  // ranges looks like {0: thread, 4: gap, 5: treadle, 9: gap, 10: color} where each key is the start-point of the next type of box
+  // haha this looks familiar
+  let result;
+  for (const rangeStart in ranges) {
+    if (dim >= rangeStart) result = ranges[rangeStart]    
+  }
+  return result;
+}
+
 const drawGrid = function(svg, options) {
   console.log(options)
   const {pixel_size, warps, wefts, shafts, treadles} = options;
@@ -58,21 +68,16 @@ const drawGrid = function(svg, options) {
   drawdown_height = pixel_size * wefts;
   for (let i = 0; i < warps + treadles + 3; i++) {
     for (let j = 0; j < wefts + shafts + 3; j++) {
-      // when i == width or j == height, make a gap for readability
-      let col_type, row_type;
+      const col_type = dimtype(i, {0: "thread", [warps]: "gap", [warps + 1]: "treadle", [warps + treadles]: "gap", [warps + treadle + 1]: "color"})
+      const row_type = dimtype(j, {0: "thread", [wefts]: "gap", [wefts + 1]: "shaft", [wefts + shafts]: "gap", [wefts + shafts + 1]: "color"})
       
-      
-      if (i < warps) {
-        col_type = 'thread'
-      } else if (i == warps) {
-        col_type = 'gap'
-      } else if (i > warps && i < warps + treadles)
       //const col_type = i < warps ? 'thread' : (i > warps ? 'treadle' : 'gap');
       //const row_type = j < wefts ? 'thread' : (j > wefts ? 'shaft' : 'gap');
       if (col_type == 'gap') console.log("gap at i=", i)
       
       let box = null;
       if (col_type == 'gap' || row_type == 'gap') box = null;
+      if (col_type == 'color' && row_type == 'thread')
       else if (col_type == 'thread' && row_type == 'thread') box = threadbox(i, j, pixel_size);
       else if (col_type == 'thread' && row_type == 'shaft') box = warpbox(i,(j - wefts - 1), pixel_size);
       else if (col_type == 'treadle' && row_type == 'thread') box = weftbox((i - warps - 1), j, pixel_size); // 0 -> treadles
