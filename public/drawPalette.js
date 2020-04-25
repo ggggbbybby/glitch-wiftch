@@ -1,5 +1,5 @@
 const swatch_size = 50;
-const palette_width = swatch_size * 12;
+const swatches_per_row = 12;
 const colors = [
   {
     "color": "2000",
@@ -368,20 +368,31 @@ const colors = [
   }
 ]
 
-const swatch = function(fill, idx) {
+const backgroundPattern = function(fill) {
+  let pattern = document.createElementNS("http://www.w3.org/2000/svg", "pattern");
+}
+const swatch = function(fill, coords) {
   let box = document.createElementNS("http://www.w3.org/2000/svg", "rect");
   box.setAttribute("height", swatch_size);
   box.setAttribute("width", swatch_size);
   box.style.stroke = "#333";
   box.style.strokeWidth = "2px";
   box.setAttribute("fill", fill);
-  box.setAttribute("y", swatch_size * idx);
+  box.setAttribute("x", coords.x);
+  box.setAttribute("y", coords.y);
   return box;
 }
 
 const drawPalette = function(svg) {
-  const colors = [];
+  const xy = (index) => {
+    return {
+      x: index % swatches_per_row,
+      y: Math.floor(index / swatches_per_row),
+    }
+  }
   colors.forEach((color, idx) => {
-    svg.appendChild(swatch(color, idx));
+    const coordinates = xy(idx);
+    svg
+    svg.appendChild(swatch(color, coordinates));
   })
 }
