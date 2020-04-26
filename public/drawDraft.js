@@ -28,13 +28,13 @@ const drawDraft = function(svg, draft) {
   };
   
   const fill_weftcolor = function(thread) {
-    thread = thread % draft.weft.length;
-    return draft.weft_colors[thread] ? `url(#${draft.weft_colors[thread]})` : draft.weft_colors.default;
+    const fill = draft.weft_colors[thread] || draft.weft_colors[thread % draft.weft.length];
+    return fill ? `url(#${fill})` : draft.weft_colors.default;
   }
   
   const fill_warpcolor = function(thread) {
-    thread = thread % draft.warp.length;
-    return draft.warp_colors[thread] ? `url(#${draft.warp_colors[thread]})` : draft.warp_colors.default;
+    const fill = draft.warp_colors[thread] || draft.warp_colors[thread % draft.warp.length];
+    return fill ? `url(#${fill})` : draft.warp_colors.default;
   }
   
   svg.querySelectorAll('rect').forEach((child) => {
