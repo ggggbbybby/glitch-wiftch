@@ -370,7 +370,7 @@ const colors = [
   }
 ]
 
-const swatch = function(color, coords) {
+const swatchBox = function(color, coords) {
   let box = document.createElementNS("http://www.w3.org/2000/svg", "rect");
   box.setAttribute("height", swatch_size);
   box.setAttribute("width", swatch_size);
@@ -397,8 +397,11 @@ const drawPalette = function(svg) {
   const pattern_defs = svg.querySelector('defs');
   colors.forEach((color, idx) => {
     const coordinates = xy(idx);
-    const swatch = swatch(color, coordinates);
-    swatch.addEventListener('click')
-    svg.appendChild(swatch(color, coordinates));
+    const swatch = swatchBox(color, coordinates);
+    swatch.addEventListener('click', (click) => {
+      console.log("you clicked on swatch", color.name);
+      document.getElementById('selected-color').setAttribute('value', color.name);
+    });
+    svg.appendChild(swatch);
   })
 }
