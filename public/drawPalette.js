@@ -397,6 +397,8 @@ const drawPalette = function(svg) {
   const pattern_defs = svg.querySelector('defs');
   colors.forEach((color, idx) => {
     const coordinates = xy(idx);
+    const swatch = swatch(color, coordinates);
+    swatch.addEventListener('click')
     svg.appendChild(swatch(color, coordinates));
   })
 }
