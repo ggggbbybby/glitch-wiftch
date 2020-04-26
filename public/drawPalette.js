@@ -166,13 +166,13 @@ const colors = [
   {
     "color": "2030",
     "name": "sapphire",
-    "rgb": "",
+    "rgb": "62,82,156",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2030.jpg"
   },
   {
     "color": "2031",
     "name": "navy",
-    "rgb": "",
+    "rgb": "76,72,111",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2031.jpg"
   },
   {
@@ -196,31 +196,31 @@ const colors = [
   {
     "color": "2035",
     "name": "aqua",
-    "rgb": "",
+    "rgb": "55,155,130",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2035.jpg"
   },
   {
     "color": "2036",
     "name": "mint",
-    "rgb": "",
+    "rgb": "136,178,128",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2036.jpg"
   },
   {
     "color": "2038",
     "name": "fern",
-    "rgb": "",
+    "rgb": "84,147,84",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2038.jpg"
   },
   {
     "color": "2039",
     "name": "willow",
-    "rgb": "",
+    "rgb": "181,181,128",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2039.jpg"
   },
   {
     "color": "2040",
     "name": "lime",
-    "rgb": "",
+    "rgb": "128,174,77",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2040.jpg"
   },
   {
@@ -238,19 +238,19 @@ const colors = [
   {
     "color": "2043",
     "name": "asparagus",
-    "rgb": "",
+    "rgb": "79,92,45",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2043.jpg"
   },
   {
     "color": "2044",
     "name": "sable",
-    "rgb": "",
+    "rgb": "89,63,58",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2044.jpg"
   },
   {
     "color": "2045",
     "name": "black walnut",
-    "rgb": "",
+    "rgb": "83,64,56",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2045.jpg"
   },
   {
