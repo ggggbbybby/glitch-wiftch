@@ -9,31 +9,37 @@ const colors = [
   {
     "color": "2003",
     "name": "silver",
+    "hex": "#a0a09f",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2003.jpg",
   },
   {
     "color": "2004",
     "name": "ash gray",
+    "hex": "#787271",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2004.jpg",
   },
   {
     "color": "2005",
     "name": "black",
+    "hex": "#28282d",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2005.jpg",
   },
   {
     "color": "2006",
     "name": "sand",
+    "hex": "#b9a690",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2006.jpg",
   },
   {
     "color": "2008",
     "name": "daffodil",
+    "hex": "#ccbd63",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2008.jpg",
   },
   {
     "color": "2009",
     "name": "goldenrod",
+    "rgb": ""
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2009.jpg"
   },
   {
@@ -54,11 +60,13 @@ const colors = [
   {
     "color": "2013",
     "name": "marigold",
+    "rgb": "227,135,47",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2013.jpg"
   },
   {
     "color": "2014",
     "name": "pumpkin",
+    "hex": "#d76c3a",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2014.jpg"
   },
   {
