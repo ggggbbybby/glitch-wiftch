@@ -49,8 +49,8 @@ const tieupbox = function(thread, treadle, pixel_size) {
 const weftcolorbox = function(col, row, pixel_size) {
   const type = 'weft-color'
   const x = (col * pixel_size);
-  const y = row * pixel_size;
-  return box(x, y, pixel_size, {thread: row, treadle: col, type})
+  const y = drawdown_height - (row + 1) * pixel_size;
+  return box(x, y, pixel_size, {thread: row, treadle: 0, type})
 }
 
 const warpcolorbox = function(col, row, pixel_size) {
@@ -79,11 +79,6 @@ const drawGrid = function(svg, options) {
     for (let j = 0; j < wefts + shafts + 3; j++) {
       const col_type = dimtype(i, {0: "thread", [warps]: "gap", [warps + 1]: "treadle", [warps + treadles + 1]: "gap", [warps + treadles + 2]: "color"})
       const row_type = dimtype(j, {0: "thread", [wefts]: "gap", [wefts + 1]: "shaft", [wefts + shafts + 1]: "gap", [wefts + shafts + 2]: "color"})
-      
-      //const col_type = i < warps ? 'thread' : (i > warps ? 'treadle' : 'gap');
-      //const row_type = j < wefts ? 'thread' : (j > wefts ? 'shaft' : 'gap');
-      if (col_type == 'gap') console.log("gap at i=", i)
-      if (col_type == 'color') console.log("color at i=", i);
       
       let box = null;
       if (col_type == 'gap' || row_type == 'gap') box = null;

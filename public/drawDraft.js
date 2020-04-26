@@ -27,8 +27,8 @@ const drawDraft = function(svg, draft) {
     return draft.weft[row] == treadle;
   };
   
-  const fill_weftcolor = function(i, j) {
-    return `url(${draft.weft_colors[i]})` || draft.weft_colors.default;
+  const fill_weftcolor = function(col, row) {
+    return draft.weft_colors[row] ? `url(#${draft.weft_colors[row]})` || draft.weft_colors.default;
   }
   
   const fill_warpcolor = function(i, j) {
