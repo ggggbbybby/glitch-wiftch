@@ -400,7 +400,7 @@ const drawPalette = function(svg) {
     const swatch = swatchBox(color, coordinates);
     swatch.addEventListener('click', (click) => {
       console.log("you clicked on swatch", color.name);
-      document.getElementById('selected-color').setAttribute('value', color.name);
+      document.getElementById('selected-color').setAttribute('value', color.name.replace(/\s+/g, '_'));
     });
     svg.appendChild(swatch);
   })

@@ -27,12 +27,14 @@ const drawDraft = function(svg, draft) {
     return draft.weft[row] == treadle;
   };
   
-  const fill_weftcolor = function(col, row) {
-    return draft.weft_colors[row] ? `url(#${draft.weft_colors[row]})` || draft.weft_colors.default;
+  const fill_weftcolor = function(thread) {
+    thread = thread % draft.weft.length;
+    return draft.weft_colors[thread] ? `url(#${draft.weft_colors[thread]})` : draft.weft_colors.default;
   }
   
-  const fill_warpcolor = function(i, j) {
-    return draft.warp_colors[j] || draft.warp_colors.default;
+  const fill_warpcolor = function(thread) {
+    thread = thread % draft.warp.length;
+    return draft.warp_colors[thread] ? `url(#${draft.warp_colors[thread]})` : draft.warp_colors.default;
   }
   
   svg.querySelectorAll('rect').forEach((child) => {
@@ -41,7 +43,7 @@ const drawDraft = function(svg, draft) {
     const row = parseInt(child.dataset.treadle);
     switch (child.dataset.type) {
       case 'drawdown':
-        fill = fill_drawdown(col, row) ? fill_weftcolor(col, row) : fill_warpcolor(col, row);
+        fill = fill_drawdown(col, row) ? fill_weftcolor(row) : fill_warpcolor(col);
         break;
       case 'warp':
         fill = fill_threading(col, row) ? "#000" : "#fff";
@@ -53,10 +55,10 @@ const drawDraft = function(svg, draft) {
         fill = fill_tieup(col, row) ? "#000" : "#fff";
         break;
       case 'weft-color':
-        fill = fill_weftcolor(col, row)
+        fill = fill_weftcolor(col)
         break;
       case 'warp-color':
-        fill = fill_warpcolor(col, row)
+        fill = fill_warpcolor(col)
         break;
     }
     child.setAttribute('fill', fill);
