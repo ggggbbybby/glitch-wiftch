@@ -10,8 +10,8 @@ let draft = {
   treadle_count: 4,
   warp: [1, 2, 3, 4],
   weft: [1, 2, 3, 4],
-  weft_colors: ["#f00"],
-  warp_colors: ["#fff"],
+  weft_colors: {default: "#f00"},
+  warp_colors: {default: "#fff"},
   //treadle_count: 6,
   //warp: [1, 4, 2, 1, 3, 2, 4, 3, 1, 4, 2, 1, 3, 2, 4, 2, 3, 1, 2, 4, 1, 3, 4, 2, 3, 1, 2, 4, 1, 4, 2, 1, 3, 2, 4, 3, 1, 4, 2, 1, 3, 2, 4, 2, 3, 1, 2, 4, 1, 3, 4, 2, 3, 1, 2, 4],
   //weft: [1, 5, 2, 6, 1, 3, 2, 4, 1, 5, 2, 6, 1, 3, 2, 4, 1, 5, 2, 6, 1, 6, 2, 5, 1, 4, 2, 3, 1, 6, 2, 5, 1, 4, 2, 3, 1, 6, 2, 5],
@@ -75,15 +75,26 @@ drawdown.addEventListener('click', (click) => {
   row = Math.floor(row / pixel_size);
   
   console.log(`you clicked on ${col_type}-${row_type} @ ${col},${row}`);
-  // add repeats to draft so that our click isn't out of bounds
-  const single_warp_repeat = draft.warp.slice();
-  while (col > draft.warp.length) draft.warp = draft.warp.concat(single_warp_repeat).slice(0, warp_thread_count.value);
-  const single_weft_repeat = draft.weft.slice();
-  while (row > draft.weft.length) draft.weft = draft.weft.concat(single_weft_repeat).slice(0, weft_thread_count.value);
+  if (col_type == 'color' && row_type == 'weft') {
+    draft.weft_colors[row] = document.getElementById('selected-color').value;
+  }
   
-  if (col_type == 'warp' && row_type == 'shaft') draft.warp[col] = row + 1
-  if (col_type == 'treadle' && row_type == 'weft') draft.weft[row] = col + 1;
-  if (col_type == 'treadle' && row_type == 'shaft') draft.tieup[col] = toggle_shaft(draft.tieup[col], row + 1);
+  else if (row_type == 'color' && col_type == 'warp') {
+    draft.warp_colors[col] = document.getElementById('selected-color').value;
+    
+  } else {
+    // add repeats to draft so that our click isn't out of bounds
+    const single_warp_repeat = draft.warp.slice();
+    while (col > draft.warp.length) draft.warp = draft.warp.concat(single_warp_repeat).slice(0, warp_thread_count.value);
+    const single_weft_repeat = draft.weft.slice();
+    while (row > draft.weft.length) draft.weft = draft.weft.concat(single_weft_repeat).slice(0, weft_thread_count.value);
+
+    if (col_type == 'warp' && row_type == 'shaft') draft.warp[col] = row + 1
+    if (col_type == 'treadle' && row_type == 'weft') draft.weft[row] = col + 1;
+    if (col_type == 'treadle' && row_type == 'shaft') draft.tieup[col] = toggle_shaft(draft.tieup[col], row + 1);    
+  }
+  
+
   drawDraft(drawdown, draft);
   generateWIF(draft);
 })

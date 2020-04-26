@@ -28,11 +28,11 @@ const drawDraft = function(svg, draft) {
   };
   
   const fill_weftcolor = function(i, j) {
-    return draft.weft_colors[i % draft.weft_colors.length];
+    return `url(${draft.weft_colors[i]})` || draft.weft_colors.default;
   }
   
   const fill_warpcolor = function(i, j) {
-    return draft.warp_colors[j % draft.warp_colors.length];
+    return draft.warp_colors[j] || draft.warp_colors.default;
   }
   
   svg.querySelectorAll('rect').forEach((child) => {
