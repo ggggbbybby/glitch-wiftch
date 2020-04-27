@@ -226,13 +226,13 @@ const colors = [
   {
     "color": "2041",
     "name": "light pear",
-    "rgb": "",
+    "rgb": "183,178,80",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2041.jpg"
   },
   {
     "color": "2042",
     "name": "pear",
-    "rgb": "",
+    "rgb": "188,177,72",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2042.jpg"
   },
   {
@@ -256,188 +256,189 @@ const colors = [
   {
     "color": "2046",
     "name": "cedar",
-    "rgb": "",
+    "rgb": "100,68,52",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2046.jpg"
   },
   {
     "color": "2047",
     "name": "sienna",
-    "rgb": "",
+    "rgb": "156,75,58",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2047.jpg"
   },
   {
     "color": "2048",
     "name": "khaki",
-    "rgb": "",
+    "rgb": "100,88,81",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2048.jpg"
   },
   {
     "color": "2049",
     "name": "camel",
-    "rgb": "",
+    "rgb": "163,125,87",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2049.jpg"
   },
   {
     "color": "2050",
     "name": "amber",
-    "rgb": "",
+    "rgb": "211,133,43",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2050.jpg"
   },
   {
     "color": "2051",
     "name": "ladyslipper",
-    "rgb": "",
+    "rgb": "204,145,160",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2051.jpg"
   },
   {
     "color": "2052",
     "name": "dusty rose",
-    "rgb": "",
+    "rgb": "189,110,107",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2052.jpg"
   },
   {
     "color": "2053",
     "name": "orchid",
-    "rgb": "",
+    "rgb": "190,90,151",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2053.jpg"
   },
   {
     "color": "2054",
     "name": "trillium",
-    "rgb": "",
+    "rgb": "113,49,57",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2054.jpg"
   },
   {
     "color": "2055",
     "name": "indigo",
-    "rgb": "",
+    "rgb": "85,74,144",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2055.jpg"
   },
   {
     "color": "2056",
     "name": "egyptian blue",
-    "rgb": "",
+    "rgb": "77,95,159",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2056.jpg"
   },
   {
     "color": "2057",
     "name": "iceberg",
-    "rgb": "",
+    "rgb": "123,139,155",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2057.jpg"
   },
   {
     "color": "2058",
     "name": "ultramarine",
-    "rgb": "",
+    "rgb": "50,82,115",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2058.jpg"
   },
   {
     "color": "2059",
     "name": "teal",
-    "rgb": "",
+    "rgb": "49,85,87",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2059.jpg"
   },
   {
     "color": "2060",
     "name": "persian blue",
-    "rgb": "",
+    "rgb": "45,131,152",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2060.jpg"
   },
   {
     "color": "2061",
     "name": "lichen",
-    "rgb": "",
+    "rgb": "179,189,161",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2061.jpg"
   },
   {
     "color": "2062",
     "name": "apple green",
-    "rgb": "",
+    "rgb": "148,130,48",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2062.jpg"
   },
   {
     "color": "2063",
     "name": "emerald",
-    "rgb": "",
+    "rgb": "26,98,47",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2063.jpg"
   },
   {
     "color": "2064",
     "name": "hunter green",
-    "rgb": "",
+    "rgb": "55,74,43",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2064.jpg"
   },
   {
     "color": "2065",
     "name": "loden",
-    "rgb": "",
+    "rgb": "61,54,46",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2065.jpg"
   },
   {
     "color": "2067",
     "name": "lilac",
-    "rgb": "",
+    "rgb": "152,119,153",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2067.jpg"
   },
   {
     "color": "2068",
     "name": "maize",
-    "rgb": "",
+    "rgb": "205,161,100",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2068.jpg"
   },
   {
     "color": "2069",
     "name": "grass",
-    "rgb": "",
+    "rgb": "101,142,75",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2069.jpg"
   },
   {
     "color": "2070",
     "name": "pastel blue gray",
-    "rgb": "",
+    "rgb": "116,113,137",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2070.jpg"
   },
   {
     "color": "2071",
     "name": "gold",
-    "rgb": "",
+    "rgb": "202,161,97",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2071.jpg"
   },
   {
     "color": "2072",
     "name": "cream",
-    "rgb": "",
+    "rgb": "214,179,141",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2072.jpg"
   },
   {
     "color": "2073",
     "name": "almond",
-    "rgb": "",
+    "rgb": "226,203,175",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2073.jpg"
   },
   {
     "color": "2074",
     "name": "cyan",
-    "rgb": "",
+    "rgb": "11,132,161",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2074.jpg"
   },
   /* skip one color because I want these to fit in a tidy 6x12 grid
   {
     "color": "2075",
     "name": "light peach",
+    "rgb": "208,148,135"
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2075.jpg"
   },
   */
   {
     "color": "2076",
     "name": "light aqua",
-    "rgb": "",
+    "rgb": "113,186,163",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2076.jpg"
   },
   {
     "color": "2080",
     "name": "cardinal",
-    "rgb": "",
+    "rgb": "161,50,64",
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2080.jpg"
   }
 ]
