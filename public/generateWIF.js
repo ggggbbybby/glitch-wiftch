@@ -15,9 +15,16 @@ const treadling_sequence = function(draft) {
   return draft.weft.slice(0, length).map((treadle, index) => `${index + 1}=${treadle}`);
 };
 
-const warp_colors = function(draft) {
-  const color = draft.warp_colors[0];
-  
+const warp_color = function(draft) {
+  const color_name = draft.warp_colors[0];
+  const color = colors.find(c => c.name.replace(/\s+/g, '_') === color_name);
+  return color ? color.rgb : "255,255,255";
+}
+
+const weft_color = function(draft) {
+  const color_name = draft.weft_colors[0];
+  const color = colors.find(c => c.name.replace(/\s+/g, '_') === color_name);
+  return color ? color.rgb : "255,0,0";
 }
 
 const generateWIF = function(draft) {
@@ -75,8 +82,8 @@ const generateWIF = function(draft) {
     "Thickness=0.2117",
     "",
     "[COLOR TABLE]",
-    `1=${draft.warp_colors[0]}`,
-    `2=${draft.weft_colors[0]}`,
+    `1=${warp_color(draft)}`,
+    `2=${weft_color(draft)}`,
     "",
     "[COLOR PALETTE]",
     "Entries=2",
