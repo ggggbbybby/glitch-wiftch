@@ -470,8 +470,7 @@ const drawPalette = function(svg) {
   const pattern_defs = svg.querySelector('defs');
   colors.forEach((color, idx) => {
     const coordinates = xy(idx);
-    const swatch = swatchBox(color, coordinates);
-    swatch.addEventListener('click', (click) => {
+    const swatch = swatchBox(color, coordinates);    swatch.addEventListener('click', (click) => {
       console.log("you clicked on swatch", color.name);
       document.getElementById('selected-color').setAttribute('value', color.name.replace(/\s+/g, '_'));
     });

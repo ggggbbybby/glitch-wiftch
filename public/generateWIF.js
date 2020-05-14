@@ -15,7 +15,8 @@ const treadling_sequence = function(draft) {
   return draft.weft.slice(0, length).map((treadle, index) => `${index + 1}=${treadle}`);
 };
 
-const warp_color = function(draft) {
+const warp_colors = function(draft) {
+  const color = draft.warp_colors[0];
   
 }
 
@@ -74,8 +75,8 @@ const generateWIF = function(draft) {
     "Thickness=0.2117",
     "",
     "[COLOR TABLE]",
-    "1=,
-    "2=255,0,0",
+    `1=${draft.warp_colors[0]}`,
+    `2=${draft.weft_colors[0]}`,
     "",
     "[COLOR PALETTE]",
     "Entries=2",
