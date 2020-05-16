@@ -15,22 +15,34 @@ const treadling_sequence = function(draft) {
   return draft.weft.slice(0, length).map((treadle, index) => `${index + 1}=${treadle}`);
 };
 
-const warp_color = function(draft) {
+const warp_colors = function(draft) {
   const color_name = draft.warp_colors[0];
   const color = colors.find(c => c.name.replace(/\s+/g, '_') === color_name);
-  return color ? color.rgb : "255,255,255";
+  return []
 }
 
-const weft_color = function(draft) {
-  const color_name = draft.weft_colors[0];
-  const color = colors.find(c => c.name.replace(/\s+/g, '_') === color_name);
-  return color ? color.rgb : "255,0,0";
+const weft_colors = function(draft) {
+  return []
+  const colors = unique_colors(draft);
+  return draft.weft_colors.map(wc => {
+    
+  })
+}
+
+const unique_colors = function(draft) {
+  const seen = new Set();
+  seen.add(...draft.warp_colors);
+  seen.add(...draft.weft_colors);
+  return [...seen];
+}
+
+const color_table = function(draft) {
+  return unique_colors(draft).map((c, i) => `${i+1}=${c}`);
 }
 
 const generateWIF = function(draft) {
   const today = new Date().toDateString();
   const title = document.getElementsByTagName("h1")[0].textContent;
-  const seen_colors = [];
   const wif = [
     "",
     "[WIF]",
@@ -44,9 +56,11 @@ const generateWIF = function(draft) {
     "COLOR PALETTE=true",
     "TEXT=true",
     "WEAVING=true",
-    "WARP=true",
-    "WEFT=true",
     "COLOR TABLE=true",
+    "WARP=true",
+    "WEFT=true",    
+    "WARP COLORS=true",
+    "WEFT COLORS=true",
     "THREADING=true",
     "TIEUP=true",
     "TREADLING=true",
@@ -68,12 +82,18 @@ const generateWIF = function(draft) {
     `Shafts=${Math.max(...draft.warp)}`,
     `Treadles=${draft.tieup.length}`,
     "",
+    "[COLOR TABLE]",
+    ...color_table(draft),
+    "",
     "[WARP]",
     "Units=centimeters",
     "Color=1",
     `Threads=${Math.min(document.getElementById("warp-threads").value, draft.warp.length)}`,
     "Spacing=0.2117",
     "Thickness=0.2117",
+    "",
+    "[WARP COLORS]",
+    ...warp_colors(draft),
     "",
     "[WEFT]",
     "Units=centimeters",
@@ -82,12 +102,11 @@ const generateWIF = function(draft) {
     "Spacing=0.2117",
     "Thickness=0.2117",
     "",
-    "[COLOR TABLE]",
-    `1=${warp_color(draft)}`,
-    `2=${weft_color(draft)}`,
+    "[WEFT COLORS]",
+    ...weft_colors(draft),
     "",
     "[COLOR PALETTE]",
-    "Entries=2",
+    `Entries=${unique_colors(draft).length}`,
     "Range=0,255"
   ];
 
