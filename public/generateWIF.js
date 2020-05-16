@@ -16,33 +16,36 @@ const treadling_sequence = function(draft) {
 };
 
 const warp_colors = function(draft) {
-  const color_name = draft.warp_colors[0];
-  const color = colors.find(c => c.name.replace(/\s+/g, '_') === color_name);
-  return []
+  const colors = unique_colors(draft);
+  return Object.keys(draft.warp_colors).map(warp_thread => {
+    if (warp_thread !== 'default') {
+      const thread = parseInt(warp_thread);
+      const color = draft.warp_colors[thread];
+      const c_index = colors.indexOf(color) + 1;
+      return `${thread + 1}=${c_index}`;
+    }
+  })
 }
 
 const weft_colors = function(draft) {
   const colors = unique_colors(draft);
   return Object.keys(draft.weft_colors).map(weft_thread => {
-    const color = draft.weft_colors[weft_thread];
-    const c_index = colors.indexOf(color) + 1;
-    return `${weft_thread + 1}=${c_index}`
+    if (weft_thread !== 'default') {
+      const color = draft.weft_colors[weft_thread];
+      const c_index = colors.indexOf(color) + 1;
+      return `${parseInt(weft_thread) + 1}=${c_index}`
+    }
   })
 }
 
-let memo = {};
 const unique_colors = function(draft) {
-  if (!memo[draft]) {
-    const colors = new Set();
-    // to make things easier, colors 1 & 2 are always default warp & weft
-    colors.add(draft.warp_colors.default);
-    colors.add(draft.weft_colors.default);
-    Object.keys(draft.warp_colors).forEach(c_index => c_index !== "default" && colors.add(draft.warp_colors[c_index]))
-    Object.keys(draft.weft_colors).forEach(c_index => c_index !== "default" && colors.add(draft.weft_colors[c_index]))
-    memo[draft] = [...colors];    
-  }
-  
-  return memo[draft];
+  const colors = new Set();
+  // to make things easier, colors 1 & 2 are always default warp & weft
+  colors.add(draft.warp_colors.default);
+  colors.add(draft.weft_colors.default);
+  Object.keys(draft.warp_colors).forEach(c_index => c_index !== "default" && colors.add(draft.warp_colors[c_index]))
+  Object.keys(draft.weft_colors).forEach(c_index => c_index !== "default" && colors.add(draft.weft_colors[c_index]))
+  return [...colors];
 }
 
 const color_table = function(draft) {
@@ -123,7 +126,7 @@ const generateWIF = function(draft) {
   // console.log(wif_out);
 
   const wifbox = document.getElementById("wif-preview");
-  wifbox.textContent = wif_out;
+  //wifbox.textContent = wif_out;
 
   const download = document.getElementById("download-wif");
   const wif_file = new Blob([wif_out], { type: "text/plain" });
