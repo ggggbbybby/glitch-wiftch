@@ -472,7 +472,7 @@ const drawPalette = function(svg) {
     const coordinates = xy(idx);
     const swatch = swatchBox(color, coordinates);    swatch.addEventListener('click', (click) => {
       console.log("you clicked on swatch", color.name);
-      document.getElementById('selected-color').setAttribute('value', color.name.replace(/\s+/g, '_'));
+      document.getElementById('selected-color').setAttribute('value', color.rgb);
     });
     svg.appendChild(swatch);
   })

@@ -76,11 +76,15 @@ drawdown.addEventListener('click', (click) => {
   
   console.log(`you clicked on ${col_type}-${row_type} @ ${col},${row}`);
   if (col_type == 'color' && row_type == 'weft') {
-    draft.weft_colors[row] = document.getElementById('selected-color').value;
+    const new_color = document.getElementById('selected-color').value;
+    console.log(`Setting draft.weft_colors[${row}] to ${new_color}`)
+    draft.weft_colors[row] = new_color;
   }
   
   else if (row_type == 'color' && col_type == 'warp') {
-    draft.warp_colors[col] = document.getElementById('selected-color').value;
+    const new_color = document.getElementById('selected-color').value;
+    console.log(`Setting draft.warp_colors[${col}] to ${new_color}`);
+    draft.warp_colors[col] = new_color;
     
   } else {
     // add repeats to draft so that our click isn't out of bounds
