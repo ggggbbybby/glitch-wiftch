@@ -22,18 +22,27 @@ const warp_colors = function(draft) {
 }
 
 const weft_colors = function(draft) {
-  return []
   const colors = unique_colors(draft);
-  return draft.weft_colors.map(wc => {
-    
+  return Object.keys(draft.weft_colors).map(weft_thread => {
+    const color = draft.weft_colors[weft_thread];
+    const c_index = colors.indexOf(color) + 1;
+    return `${weft_thread + 1}=${c_index}`
   })
 }
 
+let memo = {};
 const unique_colors = function(draft) {
-  const seen = new Set();
-  Object.keys(draft.warp_colors).forEach(c_index => c_index !== "default" && seen.add(draft.warp_colors[c_index]))
-  Object.keys(draft.weft_colors).forEach(c_index => c_index !== "default" && seen.add(draft.weft_colors[c_index]))
-  return [...seen];
+  if (!memo[draft]) {
+    const colors = new Set();
+    // to make things easier, colors 1 & 2 are always default warp & weft
+    colors.add(draft.warp_colors.default);
+    colors.add(draft.weft_colors.default);
+    Object.keys(draft.warp_colors).forEach(c_index => c_index !== "default" && colors.add(draft.warp_colors[c_index]))
+    Object.keys(draft.weft_colors).forEach(c_index => c_index !== "default" && colors.add(draft.weft_colors[c_index]))
+    memo[draft] = [...colors];    
+  }
+  
+  return memo[draft];
 }
 
 const color_table = function(draft) {
