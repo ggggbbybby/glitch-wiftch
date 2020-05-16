@@ -30,6 +30,7 @@ const weft_color = function(draft) {
 const generateWIF = function(draft) {
   const today = new Date().toDateString();
   const title = document.getElementsByTagName("h1")[0].textContent;
+  const seen_colors = [];
   const wif = [
     "",
     "[WIF]",
