@@ -31,8 +31,8 @@ const weft_colors = function(draft) {
 
 const unique_colors = function(draft) {
   const seen = new Set();
-  seen.add(...draft.warp_colors);
-  seen.add(...draft.weft_colors);
+  Object.keys(draft.warp_colors).forEach(c_index => c_index !== "default" && seen.add(draft.warp_colors[c_index]))
+  Object.keys(draft.weft_colors).forEach(c_index => c_index !== "default" && seen.add(draft.weft_colors[c_index]))
   return [...seen];
 }
 
