@@ -126,7 +126,7 @@ const generateWIF = function(draft) {
   // console.log(wif_out);
 
   const wifbox = document.getElementById("wif-preview");
-  //wifbox.textContent = wif_out;
+  wifbox.textContent = wif_out;
 
   const download = document.getElementById("download-wif");
   const wif_file = new Blob([wif_out], { type: "text/plain" });
