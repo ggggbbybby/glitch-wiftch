@@ -1,6 +1,6 @@
 const swatch_size = 50;
 const swatches_per_row = 12;
-const colors = [
+const vavstuga_colors = [
   {
     "color": "2000",
     "name": "ivory",
@@ -442,6 +442,48 @@ const colors = [
     "url": "https://store.vavstuga.com/mm5/graphics/00000001/th-yarn-bock-cot-lin-22-2-2080.jpg"
   }
 ]
+
+const colors = [
+  {
+    "color": "03",
+    "name": "black",
+    "rgb": "34, 33, 31"
+  },
+  {
+    "color": "04",
+    "name": "darker grey",
+    "rgb": "106, 104, 107"
+  },  
+  {
+    "color": "37",
+    "name": "dark grey",
+    "rgb": "123, 113, 114"
+  },  {
+    "color": "219",
+    "name": "grey (print)",
+    "rgb": "144, 141, 136"
+  },  {
+    "color": "211",
+    "name": "sea green",
+    "rgb": "152, 195, 175"
+  },  {
+    "color": "05",
+    "name": "grey",
+    "rgb": "167, 161, 145"
+  },  {
+    "color": "16",
+    "name": "light grey",
+    "rgb": "192, 186, 170"
+  },  {
+    "color": "01",
+    "name": "white",
+    "rgb": "34, 33, 31"
+  },  {
+    "color": "03",
+    "name": "black",
+    "rgb": "34, 33, 31"
+  },  
+];
 
 const swatchBox = function(color, coords) {
   let box = document.createElementNS("http://www.w3.org/2000/svg", "rect");
