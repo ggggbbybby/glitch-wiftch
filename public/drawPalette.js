@@ -464,7 +464,7 @@ const colors = [
     "rgb": "144, 141, 136"
   },  {
     "color": "211",
-    "name": "sea green",
+    "name": "sea green (print)",
     "rgb": "152, 195, 175"
   },  {
     "color": "05",
@@ -477,12 +477,31 @@ const colors = [
   },  {
     "color": "01",
     "name": "white",
-    "rgb": "34, 33, 31"
+    "rgb": "266, 222, 192"
   },  {
-    "color": "03",
-    "name": "black",
-    "rgb": "34, 33, 31"
+    "color": "38",
+    "name": "nakey jakey",
+    "rgb": "241, 218, 187"
   },  
+  {
+    "color": "36",
+    "name": "beige",
+    "rgb": "242, 203, 164"
+  },
+  {
+    "color": "35",
+    "name": "sand",
+    "rgb": "200, 176, 148"
+  },
+    {
+    "color": "34",
+    "name": "chestnut",
+    "rgb": "146, 95, 78"
+  },  {
+    "color": "217",
+    "name": "purple (print)",
+    "rgb": "124, 53, 83"
+  },
 ];
 
 const swatchBox = function(color, coords) {
@@ -491,7 +510,8 @@ const swatchBox = function(color, coords) {
   box.setAttribute("width", swatch_size);
   box.style.stroke = "#333";
   box.style.strokeWidth = "2px";
-  box.setAttribute("fill", `url(#${color.name.replace(/\s+/g, '_')})`);
+  box.setAttribute("fill", `rgba(${color.rgb})`);
+  //box.setAttribute("fill", `url(#${color.name.replace(/\s+/g, '_')})`);
   box.setAttribute("x", coords.x);
   box.setAttribute("y", coords.y);
   return box;
