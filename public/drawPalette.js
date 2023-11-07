@@ -443,7 +443,7 @@ const vavstuga_colors = [
   }
 ]
 
-const colors = [
+const hobbi_colors = [
   {
     "color": "03",
     "name": "black",
@@ -504,13 +504,133 @@ const colors = [
   },
 ];
 
+const colors = [
+  {
+    "color": "p1",
+    "name": "p1",
+    "rgb": "#4a3551"
+  },
+  {
+    "color": "p2",
+    "name": "p2",
+    "rgb": "#493450"
+  },
+  {
+    "color": "p3",
+    "name": "p3",
+    "rgb": "#2c2d31"
+  },
+  {
+    "color": "p4",
+    "name": "p4",
+    "rgb": "#2d2e32"
+  },
+  {
+    "color": "p5",
+    "name": "p5",
+    "rgb": "#2b2c2f"
+  },
+  {
+    "color": "p6",
+    "name": "p6",
+    "rgb": "#363b3c"
+  },
+  {
+    "color": "rr1",
+    "name": "p6",
+    "rgb": "#b32040"
+  },
+  {
+    "color": "rr2",
+    "name": "rr2",
+    "rgb": "#bb2427"
+  },
+  {
+    "color": "rr3",
+    "name": "rr3",
+    "rgb": "#3a4042"
+  },
+  {
+    "color": "rr4",
+    "name": "rr4",
+    "rgb": "#2a2b2f"
+  },
+  {
+    "color": "rr5",
+    "name": "rr5",
+    "rgb": "#1e2122"
+  },
+  {
+    "color": "rr6",
+    "name": "rr6",
+    "rgb": "#111212"
+  },
+  {
+    "color": "ry1",
+    "name": "ry1",
+    "rgb": "#901519"
+  },
+  {
+    "color": "ry2",
+    "name": "ry2",
+    "rgb": "#882121"
+  },
+  {
+    "color": "ry3",
+    "name": "ry3",
+    "rgb": "#d3a552"
+  },
+  {
+    "color": "ry4",
+    "name": "ry4",
+    "rgb": "#b59873"
+  },
+  {
+    "color": "ry5",
+    "name": "ry5",
+    "rgb": "#7e6f62"
+  },
+  {
+    "color": "g1",
+    "name": "g1",
+    "rgb": "#2f5450"
+  },
+  {
+    "color": "g2",
+    "name": "g2",
+    "rgb": "#43473d"
+  },
+  {
+    "color": "g3",
+    "name": "g3",
+    "rgb": "#d2d0ca"
+  },
+  {
+    "color": "g4",
+    "name": "g4",
+    "rgb": "#d5c4af"
+  },
+  {
+    "color": "g5",
+    "name": "g5",
+    "rgb": "#c4ac8c"
+  },
+  {
+    "color": "g6",
+    "name": "g6",
+    "rgb": "#927053"
+  },
+  
+]
+
 const swatchBox = function(color, coords) {
   let box = document.createElementNS("http://www.w3.org/2000/svg", "rect");
   box.setAttribute("height", swatch_size);
   box.setAttribute("width", swatch_size);
   box.style.stroke = "#333";
   box.style.strokeWidth = "2px";
-  box.setAttribute("fill", `rgba(${color.rgb})`);
+  box.setAttribute("fill", color.rgb);
+  //box.setAttribute("fill", `rgba(${color.rgb})`);
   //box.setAttribute("fill", `url(#${color.name.replace(/\s+/g, '_')})`);
   box.setAttribute("x", coords.x);
   box.setAttribute("y", coords.y);
