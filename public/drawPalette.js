@@ -1,5 +1,5 @@
-const swatch_size = 150;
-const swatches_per_row = 6;
+const swatch_size = 85;
+const swatches_per_row =9;
 const vavstuga_colors = [
   {
     "color": "2000",
@@ -505,8 +505,27 @@ const hobbi_colors = [
 ];
 
 const colors = [
-
-  
+  // black -> grey
+  {
+    "color": "rr6",
+    "name": "rr6",
+    "rgb": "#111212"
+  },
+  {
+    "color": "rr5",
+    "name": "rr5",
+    "rgb": "#1e2122"
+  },
+  {
+    "color": "rr4",
+    "name": "rr4",
+    "rgb": "#2a2b2f"
+  },
+  {
+    "color": "p5",
+    "name": "p5",
+    "rgb": "#2b2c2f"
+  },  
   {
     "color": "p3",
     "name": "p3",
@@ -518,24 +537,58 @@ const colors = [
     "rgb": "#2d2e32"
   },
   {
-    "color": "p5",
-    "name": "p5",
-    "rgb": "#2b2c2f"
-  },
-  {
     "color": "p6",
     "name": "p6",
     "rgb": "#363b3c"
+  },  
+  {
+    "color": "rr3",
+    "name": "rr3",
+    "rgb": "#3a4042"
   },
-    {
-    "color": "p1",
-    "name": "p1",
-    "rgb": "#4a3551"
+
+  // cool green to warm brown
+
+  {
+    "color": "g2",
+    "name": "g2",
+    "rgb": "#43473d"
   },
   {
-    "color": "p2",
-    "name": "p2",
-    "rgb": "#493450"
+    "color": "ry5",
+    "name": "ry5",
+    "rgb": "#7e6f62"
+  }, 
+  {
+    "color": "g3",
+    "name": "g3",
+    "rgb": "#d2d0ca"
+  },
+  {
+    "color": "g4",
+    "name": "g4",
+    "rgb": "#d5c4af"
+  },  
+  {
+    "color": "g5",
+    "name": "g5",
+    "rgb": "#c4ac8c"
+  },  
+  {
+    "color": "ry4",
+    "name": "ry4",
+    "rgb": "#b59873"
+  },  
+  
+  {
+    "color": "g6",
+    "name": "g6",
+    "rgb": "#927053"
+  },  
+  {
+    "color": "ry3",
+    "name": "ry3",
+    "rgb": "#d3a552"
   },
   {
     "color": "rr1",
@@ -547,26 +600,8 @@ const colors = [
     "name": "rr2",
     "rgb": "#bb2427"
   },
-  {
-    "color": "rr3",
-    "name": "rr3",
-    "rgb": "#3a4042"
-  },
-  {
-    "color": "rr4",
-    "name": "rr4",
-    "rgb": "#2a2b2f"
-  },
-  {
-    "color": "rr5",
-    "name": "rr5",
-    "rgb": "#1e2122"
-  },
-  {
-    "color": "rr6",
-    "name": "rr6",
-    "rgb": "#111212"
-  },
+  
+
   {
     "color": "ry1",
     "name": "ry1",
@@ -577,51 +612,27 @@ const colors = [
     "name": "ry2",
     "rgb": "#882121"
   },
+
   {
-    "color": "ry3",
-    "name": "ry3",
-    "rgb": "#d3a552"
+    "color": "p1",
+    "name": "p1",
+    "rgb": "#4a3551"
   },
   {
-    "color": "ry4",
-    "name": "ry4",
-    "rgb": "#b59873"
+    "color": "p2",
+    "name": "p2",
+    "rgb": "#493450"
   },
-  {
-    "color": "ry5",
-    "name": "ry5",
-    "rgb": "#7e6f62"
-  },
+
   {
     "color": "g1",
     "name": "g1",
     "rgb": "#2f5450"
   },
-  {
-    "color": "g2",
-    "name": "g2",
-    "rgb": "#43473d"
-  },
-  {
-    "color": "g3",
-    "name": "g3",
-    "rgb": "#d2d0ca"
-  },
-  {
-    "color": "g4",
-    "name": "g4",
-    "rgb": "#d5c4af"
-  },
-  {
-    "color": "g5",
-    "name": "g5",
-    "rgb": "#c4ac8c"
-  },
-  {
-    "color": "g6",
-    "name": "g6",
-    "rgb": "#927053"
-  },
+
+
+
+
   
 ]
 
