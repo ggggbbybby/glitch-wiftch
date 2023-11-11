@@ -1,5 +1,5 @@
-const swatch_size = 50;
-const swatches_per_row = 12;
+const swatch_size = 150;
+const swatches_per_row = 6;
 const vavstuga_colors = [
   {
     "color": "2000",
@@ -505,16 +505,8 @@ const hobbi_colors = [
 ];
 
 const colors = [
-  {
-    "color": "p1",
-    "name": "p1",
-    "rgb": "#4a3551"
-  },
-  {
-    "color": "p2",
-    "name": "p2",
-    "rgb": "#493450"
-  },
+
+  
   {
     "color": "p3",
     "name": "p3",
@@ -534,6 +526,16 @@ const colors = [
     "color": "p6",
     "name": "p6",
     "rgb": "#363b3c"
+  },
+    {
+    "color": "p1",
+    "name": "p1",
+    "rgb": "#4a3551"
+  },
+  {
+    "color": "p2",
+    "name": "p2",
+    "rgb": "#493450"
   },
   {
     "color": "rr1",
