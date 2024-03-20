@@ -504,137 +504,40 @@ const hobbi_colors = [
   },
 ];
 
-const colors = [
-  // black -> grey
+const linen_colors = [
   {
-    "color": "rr6",
-    "name": "rr6",
-    "rgb": "#111212"
+    "color": "darkbrown",
+    "name": "darkbrown",
+    "rgb": "141, 125, 109"
   },
   {
-    "color": "rr5",
-    "name": "rr5",
-    "rgb": "#1e2122"
+    "color": "lightbrown",
+    "name": "lightbrown",
+    "rgb": "179, 152, 133"
   },
   {
-    "color": "rr4",
-    "name": "rr4",
-    "rgb": "#2a2b2f"
+    "color": "blue",
+    "name": "blue",
+    "rgb": "3, 44, 134"
   },
   {
-    "color": "p5",
-    "name": "p5",
-    "rgb": "#2b2c2f"
-  },  
-  {
-    "color": "p3",
-    "name": "p3",
-    "rgb": "#2c2d31"
+    "color": "pink",
+    "name": "pink",
+    "rgb": "234, 193, 199"
   },
   {
-    "color": "p4",
-    "name": "p4",
-    "rgb": "#2d2e32"
+    "color": "seagreen",
+    "name": "seagreen",
+    "rgb": "205, 221, 206"
   },
   {
-    "color": "p6",
-    "name": "p6",
-    "rgb": "#363b3c"
-  },  
-  {
-    "color": "rr3",
-    "name": "rr3",
-    "rgb": "#3a4042"
-  },
-
-  // cool green to warm brown
-
-  {
-    "color": "g2",
-    "name": "g2",
-    "rgb": "#43473d"
-  },
-  {
-    "color": "ry5",
-    "name": "ry5",
-    "rgb": "#7e6f62"
-  }, 
-  {
-    "color": "g3",
-    "name": "g3",
-    "rgb": "#d2d0ca"
-  },
-  {
-    "color": "g4",
-    "name": "g4",
-    "rgb": "#d5c4af"
-  },  
-  {
-    "color": "g5",
-    "name": "g5",
-    "rgb": "#c4ac8c"
-  },  
-  {
-    "color": "ry4",
-    "name": "ry4",
-    "rgb": "#b59873"
-  },  
-  
-  {
-    "color": "g6",
-    "name": "g6",
-    "rgb": "#927053"
-  },  
-  {
-    "color": "ry3",
-    "name": "ry3",
-    "rgb": "#d3a552"
-  },
-  {
-    "color": "rr1",
-    "name": "p6",
-    "rgb": "#b32040"
-  },
-  {
-    "color": "rr2",
-    "name": "rr2",
-    "rgb": "#bb2427"
-  },
-  
-
-  {
-    "color": "ry1",
-    "name": "ry1",
-    "rgb": "#901519"
-  },
-  {
-    "color": "ry2",
-    "name": "ry2",
-    "rgb": "#882121"
-  },
-
-  {
-    "color": "p1",
-    "name": "p1",
-    "rgb": "#4a3551"
-  },
-  {
-    "color": "p2",
-    "name": "p2",
-    "rgb": "#493450"
-  },
-
-  {
-    "color": "g1",
-    "name": "g1",
-    "rgb": "#2f5450"
-  },
-
-
-
-
-  
+    "color": "lightgrey",
+    "name": "lightgrey",
+    "rgb": "236, 238, 217"
+  }
 ]
+
+const colors = linen_colors;
 
 const swatchBox = function(color, coords) {
   let box = document.createElementNS("http://www.w3.org/2000/svg", "rect");
@@ -642,9 +545,9 @@ const swatchBox = function(color, coords) {
   box.setAttribute("width", swatch_size);
   box.style.stroke = "#333";
   box.style.strokeWidth = "2px";
-  box.setAttribute("fill", color.rgb);
-  //box.setAttribute("fill", `rgba(${color.rgb})`);
-  //box.setAttribute("fill", `url(#${color.name.replace(/\s+/g, '_')})`);
+  //box.setAttribute("fill", color.rgb);
+  box.setAttribute("fill", `rgba(${color.rgb})`);
+  //box.setAttribute("fill", `url(#${color.name.replace(/ /g, "_")})`); // only works with predefined vavstuga color palette
   box.setAttribute("x", coords.x);
   box.setAttribute("y", coords.y);
   return box;
@@ -655,7 +558,7 @@ const drawPalette = function(svg) {
   const palette_height = swatch_size * Math.ceil(colors.length / swatches_per_row);
   svg.setAttribute("width", palette_width);
   svg.setAttribute("height", palette_height);
-  
+
   const xy = (index) => {
     return {
       x: swatch_size * (index % swatches_per_row),

@@ -29,12 +29,12 @@ const drawDraft = function(svg, draft) {
   
   const fill_weftcolor = function(thread) {
     const fill = draft.weft_colors[thread] || draft.weft_colors[thread % draft.weft.length] || draft.weft_colors.default;
-    return fill; //`rgb(${fill})`;
+    return `rgb(${fill})`;
   }
   
   const fill_warpcolor = function(thread) {
     const fill = draft.warp_colors[thread] || draft.warp_colors[thread % draft.warp.length] || draft.warp_colors.default;
-    return fill; //`rgb(${fill})`;
+    return `rgb(${fill})`;
   }
   
   svg.querySelectorAll('rect').forEach((child) => {
