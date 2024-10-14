@@ -537,7 +537,88 @@ const linen_colors = [
   }
 ]
 
-const colors = linen_colors;
+const colors = [
+  {
+    "color": "1-1",
+    "rgb": "245, 220, 224"
+  },
+  {
+    "color": "1-2",
+    "rgb": "219, 167, 156"
+  },
+  {
+    "color": "1-3",
+    "rgb": "182, 149, 140"
+  },
+  {
+    "color": "1-4",
+    "rgb": "162, 108, 106"
+  },
+  {
+    "color": "1-5",
+    "rgb": "78, 38, 38"
+  },
+  {
+    "color": "2-1",
+    "rgb": "196, 214, 224"
+  },
+  {
+    "color": "2-2",
+    "rgb": "107, 122, 129"
+  },
+  {
+    "color": "2-3",
+    "rgb": "72, 129, 110"
+  },
+  {
+    "color": "2-4",
+    "rgb": "171, 201, 173"
+  },
+  {
+    "color": "2-5",
+    "rgb": "107, 142, 102"
+  },
+  {
+    "color": "3-1",
+    "rgb": "252, 169, 47"
+  },
+  {
+    "color": "3-2",
+    "rgb": "255, 80, 47"
+  },
+  {
+    "color": "3-3",
+    "rgb": "149, 8, 27"
+  },
+  {
+    "color": "3-4",
+    "rgb": "181, 30, 85"
+  },
+  {
+    "color": "4-1",
+    "rgb": "95, 28, 82"
+  },
+  {
+    "color": "4-2",
+    "rgb": "32, 35, 112"
+  },
+  {
+    "color": "4-3",
+    "rgb": "3, 103, 93"
+  },
+  {
+    "color": "4-4",
+    "rgb": "16, 108, 71"
+  },
+  {
+    "color": "4-5",
+    "rgb": "40, 38, 39"
+  },
+  {
+    "color": "bg",
+    "rgb": "205, 221, 206"
+  }
+];
 
 const swatchBox = function(color, coords) {
   let box = document.createElementNS("http://www.w3.org/2000/svg", "rect");

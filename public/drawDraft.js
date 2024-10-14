@@ -11,7 +11,7 @@ const drawDraft = function(svg, draft) {
   };
 
   const fill_threading = function(col, row) {
-    return draft.warp[col % draft.warp.length] == row + 1;
+    return draft.warp[col/* % draft.warp.length*/] == row + 1;
   };
 
   const fill_tieup = function(i, j) {
@@ -23,17 +23,17 @@ const drawDraft = function(svg, draft) {
 
   const fill_treadling = function(i, j) {
     let treadle = i + 1;
-    let row = j % draft.weft.length;
+    let row = j //% draft.weft.length;
     return draft.weft[row] == treadle;
   };
   
   const fill_weftcolor = function(thread) {
-    const fill = draft.weft_colors[thread] || draft.weft_colors[thread % draft.weft.length] || draft.weft_colors.default;
+    const fill = draft.weft_colors[thread] /*|| draft.weft_colors[thread % draft.weft.length] */|| draft.weft_colors.default;
     return `rgb(${fill})`;
   }
   
   const fill_warpcolor = function(thread) {
-    const fill = draft.warp_colors[thread] || draft.warp_colors[thread % draft.warp.length] || draft.warp_colors.default;
+    const fill = draft.warp_colors[thread] /*|| draft.warp_colors[thread % draft.warp.length] */|| draft.warp_colors.default;
     return `rgb(${fill})`;
   }
   

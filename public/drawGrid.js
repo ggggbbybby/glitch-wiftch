@@ -4,7 +4,7 @@ const box = function(x, y, pixel_size, data={}) {
   let box = document.createElementNS("http://www.w3.org/2000/svg", "rect");
   box.setAttribute("height", pixel_size);
   box.setAttribute("width", pixel_size);
-  box.style.stroke = "#333";
+  box.style.stroke = "#999";
   box.style.strokeWidth = "2px";
   box.setAttribute("x", x);
   box.setAttribute("y", y);

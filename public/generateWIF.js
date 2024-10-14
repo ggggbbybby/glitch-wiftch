@@ -131,6 +131,7 @@ const generateWIF = function(draft) {
   const download = document.getElementById("download-wif");
   const wif_file = new Blob([wif_out], { type: "text/plain" });
   const url = window.URL.createObjectURL(wif_file);
+  let wif_title = document.getElementById("wif-title").value || "glitch-wiftch"
   download.href = url;
-  download.download = `${title}.wif`;
+  download.download = `${wif_title}.wif`;
 }
